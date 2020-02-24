@@ -26,6 +26,10 @@ Route::get('preview',function(){
     return view('front.home');
 });
 
+Route::get('preview', function(){
+    return view('front.home');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
