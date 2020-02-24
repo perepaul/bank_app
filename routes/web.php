@@ -1,5 +1,9 @@
 <?php
 
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +21,9 @@ Route::get('/', function () {
 
 Route::get('/test',function(){
     return view('dashboard.test');
+});
+Route::get('preview',function(){
+    return view('front.home');
 });
 
 Auth::routes();
