@@ -23,6 +23,11 @@ Route::get('preview', function(){
     return view('front.home');
 });
 
+Route::get('about', function(){
+    return view('layouts.about');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
