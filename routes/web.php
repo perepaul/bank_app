@@ -19,6 +19,10 @@ Route::get('/test',function(){
     return view('dashboard.test');
 });
 
+Route::get('preview', function(){
+    return view('front.home');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
