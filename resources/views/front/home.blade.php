@@ -1,5 +1,9 @@
 @extends('layouts.front')
 
+@section('slider')
+    @include('layouts.global_components.front._slider')
+@endsection
+
 @section('content')
 {{-- hotlinks section --}}
 @include('layouts.global_components.front._hotlinks')
@@ -19,6 +23,6 @@
 
 <!-- Sponsors Container-->
 @include('layouts.global_components.front._sponsors')
-<!-- End Sponsors Container--> 
+<!-- End Sponsors Container-->
 
 @endsection

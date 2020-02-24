@@ -29,8 +29,8 @@
                             @include('layouts.global_components.front._breadcrumb')
                             <!-- End breadcrumbs-->
 
-                            <!-- Slide Section--> 
-                            @include('layouts.global_components.front._slider')
+                            <!-- Slide Section-->
+                            @yield('slider')
 
                             <!-- End Slide Section-->
 
@@ -44,9 +44,9 @@
 
                 @yield('content')
 
-                
-                
-                
+
+
+
                 <!-- Footer -->
                 @include('layouts.global_components.front._footer')
                 <!-- End Footer -->

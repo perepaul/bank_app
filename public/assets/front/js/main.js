@@ -6,7 +6,7 @@
 // Author: Iwthemes.
 // Name File: main.js
 // Version 1.0 - Created on 16 Nov 2015
-// Website: http://www.iwthemes.com 
+// Website: http://www.iwthemes.com
 // Email: support@iwthemes.com
 // Copyright: (C) 2015
 
@@ -132,31 +132,31 @@ $(document).ready(function($) {
   })
 
   //=================================== Loader =====================================//
-  $(".status").fadeOut();
+  $(".status").fadeOut(3000);
   $(".preloader").delay(1000).fadeOut("slow");
 
 
 	//=================================== Subtmit Form  ===================================//
-	$('#form-contact').submit(function(event) {  
-	     event.preventDefault();  
-	     var url = $(this).attr('action');  
-	     var datos = $(this).serialize();  
-	     	$.get(url, datos, function(resultado) {  
-	     	$('#result').html(resultado);  
-		});  
+	$('#form-contact').submit(function(event) {
+	     event.preventDefault();
+	     var url = $(this).attr('action');
+	     var datos = $(this).serialize();
+	     	$.get(url, datos, function(resultado) {
+	     	$('#result').html(resultado);
+		});
  	});
 
   //=================================== Form Newslleter  =================================//
-  $('#newsletterForm').submit(function(event) {  
-       event.preventDefault();  
-       var url = $(this).attr('action');  
-       var datos = $(this).serialize();  
-        $.get(url, datos, function(resultado) {  
-        $('#result-newsletter').html(resultado);  
-    });  
-  });  
+  $('#newsletterForm').submit(function(event) {
+       event.preventDefault();
+       var url = $(this).attr('action');
+       var datos = $(this).serialize();
+        $.get(url, datos, function(resultado) {
+        $('#result-newsletter').html(resultado);
+    });
+  });
 
-  //=================================== Ligbox  ===========================================//	
+  //=================================== Ligbox  ===========================================//
   $(".fancybox").fancybox({
       openEffect  : 'elastic',
       closeEffect : 'elastic',
@@ -189,7 +189,7 @@ $(document).ready(function($) {
   $().UItoTop({
 		scrollSpeed:500,
 		easingType:'linear'
-	});	
+	});
 
   //=================================== Portfolio Filters  ==============================//
 
@@ -215,6 +215,6 @@ $(document).ready(function($) {
             }
         });
        return false;
-  }); 
+  });
 
-});	
+});
