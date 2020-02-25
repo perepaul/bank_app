@@ -34,6 +34,28 @@ Route::get('about', function(){
     return view('front.about');
 });
 
+Route::get('contact', function(){
+    return view('front.contact_us');
+
+});
+
+Route::get('users', function(){
+    return view('front.account.update_info');
+
+});
+
+
+Route::get('statement', function(){
+    return view('front.account.statement');
+
+});
+
+Route::get('transactions', function(){
+    return view('front.account.transactions');
+
+});
+
+
 
 Auth::routes();
 

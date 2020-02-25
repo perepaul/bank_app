@@ -1,62 +1,6 @@
 <!-- footer-->
 <footer id="footer">
-    <!-- Services-lines Items Container -->
-    <div class="container">
-        <div class="row">
-            <!-- Services-lines Items -->
-            <div class="col-md-12 services-lines-container">
-                <ul class="services-lines">
-                    <li>
-                        <div class="item-service-line">
-                            <i class="fa fa-credit-card"></i>
-                            <h5>Your Payments</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="item-service-line">
-                            <i class="fa fa-industry"></i>
-                            <h5>District Tax Payment</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-service-line">
-                            <i class="fa fa-university"></i>
-                            <h5>Paying Taxes - CoopBank</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                </ul>
-
-                <ul class="services-lines no-margin">
-                    <li>
-                        <div class="item-service-line">
-                           <i class="fa fa-balance-scale"></i>
-                            <h5>Payment of contributions</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                     <li>
-                        <div class="item-service-line">
-                           <i class="fa fa-cc"></i>
-                            <h5>Settlement and severance pay.</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-service-line">
-                            <i class="fa fa-line-chart"></i>
-                            <h5>Workers pay contributions</h5>
-                            <a href="#">Go To</a>
-                        </div>
-                    </li>
-                </ul>
-            </div> 
-            <!-- End Services-lines Items --> 
-        </div>
-    </div>
-    <!-- Services-lines Items Container -->
+  
 
     <!-- Items Footer -->
     <div class="container">
