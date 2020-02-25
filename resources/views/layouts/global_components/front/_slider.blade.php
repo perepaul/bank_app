@@ -1,11 +1,11 @@
 <div class="tp-banner-container">
     <div class="tp-banner" >
         <!-- SLIDES CONTENT-->
-        <ul> 
+        <ul>
             <!-- SLIDE  -->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="img/slide/slide-02.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/slide/slide-02.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -50,7 +50,7 @@
             <!-- SLIDE  -->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="img/slide/slide-03.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/slide/slide-03.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -122,7 +122,7 @@
             <!-- SLIDE 01-->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="img/slide/slide-01.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/slide/slide-01.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                 <!-- LAYER NR. 1 -->
                 <div class="tp-caption medium_text lft stl"
@@ -162,7 +162,7 @@
             <!-- SLIDE  -->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="img/slide/slide-04.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/slide/slide-04.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -230,8 +230,8 @@
                 </div>
                 <!-- END LAYER NR. 3 -->
             </li>
-        </ul> 
-        <!-- END SLIDES  --> 
-        <div class="tp-bannertimer"></div>  
+        </ul>
+        <!-- END SLIDES  -->
+        <div class="tp-bannertimer"></div>
     </div>
-</div>  
+</div>

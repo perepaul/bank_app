@@ -7,7 +7,7 @@
                 <div class="icon-logo">
                     <i class="fa fa-university"></i>
                 </div>
-                <a href="index.html">
+                <a href="{{route('home')}}">
                     Coop Bank
                     <span>Your money is safe.</span>
                 </a>
@@ -30,7 +30,7 @@
                               <select class="guests-input">
                                   <option>Citizenship Card</option>
                                   <option>Foreigners Card</option>
-                                  <option>Tax identification number</option>                    
+                                  <option>Tax identification number</option>
                                   <option>Identity Card</option>
                                   <option>Username</option>
                               </select>

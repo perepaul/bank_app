@@ -31,7 +31,7 @@ Route::get('preview', function(){
 });
 
 Route::get('about', function(){
-    return view('layouts.about');
+    return view('front.about');
 });
 
 

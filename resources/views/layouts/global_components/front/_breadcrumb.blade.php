@@ -1,4 +1,4 @@
-<div class="breadcrumbs">
+<div class="breadcrumbs breadcrumbs-sections">
     <ul>
         <li class="breadcrumbs-home">
             <a href="#" title="Back To Home">

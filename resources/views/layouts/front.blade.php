@@ -12,6 +12,7 @@
             <div id="fond-header" class="fond-header"></div>
             <!-- End fond-header-->
 
+
             @include('layouts.global_components.front._header')
 
             <!-- content-central-->
@@ -20,24 +21,13 @@
 
                 <!-- Container Area  -  Slide and tabs -->
                 <div class="content_info">
-                    <div class="container">
-                        <div class="row">
-                             <!-- Content Breadcumbs And Slide-->
-                            <div class="col-md-12">
 
-                            <!-- breadcrumbs-->
-                            @include('layouts.global_components.front._breadcrumb')
-                            <!-- End breadcrumbs-->
+                    @yield('title')
 
-                            <!-- Slide Section-->
-                            @yield('slider')
+                    @include('layouts.global_components.front._breadcrumb')
 
-                            <!-- End Slide Section-->
+                    @yield('slider')
 
-                            </div>
-                            <!-- End Content Breadcumbs And Slide-->
-                        </div>
-                    </div>
                 </div>
                 <!-- End Container Area - Slide and tabs -->
 

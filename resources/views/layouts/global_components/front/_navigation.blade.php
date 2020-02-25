@@ -28,7 +28,7 @@
                                           <strong>
                                             <i class="fa fa-bank"></i>
                                             Banks - Finance
-                                          </strong>  
+                                          </strong>
                                           <span>Special For Financial institutions</span>
                                       </li>
                                       <li><a href="index.html"> Version 1 </a></li>
@@ -124,7 +124,7 @@
                                           <strong>
                                             <i class="fa fa-bicycle"></i>
                                             For Persons
-                                          </strong>  
+                                          </strong>
                                           <span>Special For Financial institutions</span>
                                       </li>
                                       <li><a href="template-accounts.html"> Accounts </a></li>
@@ -184,7 +184,7 @@
                                 <div class="row">
                                   <ul class="col-md-3 list-unstyled">
                                     <li>
-                                        <strong>Features</strong>  
+                                        <strong>Features</strong>
                                     </li>
                                     <li><a href="template-register-area.html">Register Area</a></li>
                                     <li><a href="template-user-area.html">User Area</a></li>
@@ -223,7 +223,7 @@
                                   </ul>
                                 </div>
                               </div>
-                              <img src="img/img-theme/img-dropdown-bg.png" class="img-nav" alt="">
+                              <img src="assets/front/img/img-theme/img-dropdown-bg.png" class="img-nav" alt="">
                             </li>
                           </ul>
                         </li>
@@ -256,7 +256,7 @@
                                           </span>
                                           <input class="form-control" placeholder="Search" name="search"  type="text" required="required">
                                       </div>
-                                  </form>  
+                                  </form>
                               </div>
                             </li>
                           </ul>

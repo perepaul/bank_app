@@ -22,11 +22,11 @@
                             <i class="fa fa-calculator"></i>
                             <h3>Protection With you</h3>
                         </div>
-                        <!--End Head Blog Post-->  
+                        <!--End Head Blog Post-->
 
                         <!--Img Blog Post-->
                         <div class="img-item-blog-post">
-                            <img src="img/blog-img/thumbs/1.jpg" alt="">
+                            <img src="assets/front/img/blog-img/thumbs/1.jpg" alt="">
                             <div class="post-meta">
                                 <ul>
                                     <li>
@@ -43,19 +43,19 @@
                                         <i class="fa fa-eye"></i>
                                         <span>234 Views</span>
                                     </li>
-                                </ul>                      
+                                </ul>
                             </div>
                         </div>
-                        <!--End Img Blog Post-->  
+                        <!--End Img Blog Post-->
 
                         <!--Ingo Blog Post-->
                         <div class="info-item-blog-post">
                             <p>Find all the support and information they need to make all decisions about saving for your future.</p>
                             <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
                         </div>
-                        <!--End Ingo Blog Post-->  
+                        <!--End Ingo Blog Post-->
                     </div>
-                    <!--End Item Blog Post-->  
+                    <!--End Item Blog Post-->
                 </div>
                 <!--End Col Item Blog Post-->
 
@@ -68,11 +68,11 @@
                             <i class="fa fa-database"></i>
                             <h3>For your future</h3>
                         </div>
-                        <!--End Head Blog Post-->  
+                        <!--End Head Blog Post-->
 
                         <!--Img Blog Post-->
                         <div class="img-item-blog-post">
-                            <img src="img/blog-img/thumbs/2.jpg" alt="">
+                            <img src="assets/front/img/blog-img/thumbs/2.jpg" alt="">
                             <div class="post-meta">
                                 <ul>
                                     <li>
@@ -89,19 +89,19 @@
                                         <i class="fa fa-eye"></i>
                                         <span>234 Views</span>
                                     </li>
-                                </ul>                      
+                                </ul>
                             </div>
                         </div>
-                        <!--End Img Blog Post-->  
+                        <!--End Img Blog Post-->
 
                         <!--Ingo Blog Post-->
                         <div class="info-item-blog-post">
                             <p>Meet here all our range of products and services, rules of our products and everything related to your savings in pension.</p>
                             <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
                         </div>
-                        <!--End Ingo Blog Post-->  
+                        <!--End Ingo Blog Post-->
                     </div>
-                    <!--End Item Blog Post-->  
+                    <!--End Item Blog Post-->
                 </div>
                 <!--End Col Item Blog Post-->
 
@@ -114,11 +114,11 @@
                             <i class="fa fa-cubes"></i>
                             <h3>Zone Saver</h3>
                         </div>
-                        <!--End Head Blog Post-->  
+                        <!--End Head Blog Post-->
 
                         <!--Img Blog Post-->
                         <div class="img-item-blog-post">
-                            <img src="img/blog-img/thumbs/3.jpg" alt="">
+                            <img src="assets/front/img/blog-img/thumbs/3.jpg" alt="">
                             <div class="post-meta">
                                 <ul>
                                     <li>
@@ -135,19 +135,19 @@
                                         <i class="fa fa-eye"></i>
                                         <span>234 Views</span>
                                     </li>
-                                </ul>                      
+                                </ul>
                             </div>
                         </div>
-                        <!--End Img Blog Post-->  
+                        <!--End Img Blog Post-->
 
                         <!--Info Blog Post-->
                         <div class="info-item-blog-post">
                             <p>Accompany relevant share you mean, renewed and information of interest to learn to save you and your projects come true.</p>
                             <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
                         </div>
-                        <!--End Ingo Blog Post-->  
+                        <!--End Ingo Blog Post-->
                     </div>
-                    <!--End Item Blog Post-->  
+                    <!--End Item Blog Post-->
                 </div>
                 <!--End Col Item Blog Post-->
             </div>
