@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-7">
                 <h3>About Us</h3>
-                <h5>Great Company</h5>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p>
+                <h5>Lets get acquainted</h5>
+                <p>Learn about how we are improving the lives of people in our community through financial empowerment.</p>
             </div>
 
             <div class="col-md-5 hidden-xs hidden-sm">
@@ -32,22 +32,24 @@
                     <img src="assets/front/img/gallery/3.jpg" alt="" class="img-responsive">
                 </div>
 
-                <div class="col-md-7">
+                <div     class="col-md-7">
                     <div class="title-subtitle">
-                        <h5>Company Value</h5>
-                        <h3>Who Are You</h3>
-                        <p class="lead">Coop Bank is a company of the envato Foundation through its banking activities to contribute in overcoming the structural causes of poverty in Australia.</p>
+                        <h5>Why Fifth Third Bank</h5>
+                        <h3>Our Culture</h3>
+                        <p class="lead">
+
+                            Respect & Inclusion are among our Core Values. A powerful foundation for all we do, these values speak to the very heart of embracing diversity. Personal beliefs, perspectives and needs matter…and are heard. When everyone is valued, we’re stronger as partners on our journey together. Here inclusion means actively seeking and welcoming diversity. To foster the engagement of all employees, we support dedicated employee business resource groups and inclusion councils that infuse our culture with respect and inclusiveness.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <h5>Our Mission</h5>
-                            <p>Lorem iur adipiscing elit. Ut vehicula dapibus augue nec maximustiam eleifend magna erat, quis vestibulum lacus mattis sit ametec pellentesque lorem sapien.</p>
+                            <h5>Our Values</h5>
+                            <p>Our Core Values guide us and are woven into the fabric of everything we do. They bring us together for a common purpose: To provide the very best experience for our customers. Team members embrace these values and find inspiring ways of incorporating them into their work every day.</p>
                         </div>
 
                         <div class="col-md-6">
-                            <h5>Responsibilty</h5>
-                            <p>Lorem iur adipiscing elit. Ut vehicula dapibus augue nec maximustiam eleifend magna erat, quis vestibulum lacus mattis sit ametec pellentesque lorem sapien.</p>
+                            <h5>Diversity</h5>
+                            <p>Respect & Inclusion are among our Core Values. A powerful foundation for all we do, these values speak to the very heart of embracing diversity. Personal beliefs, perspectives and needs matter…and are heard. When everyone is valued, we’re stronger as partners on our journey together.</p>
                         </div>
                     </div>
                 </div>

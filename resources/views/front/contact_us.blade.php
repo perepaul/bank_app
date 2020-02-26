@@ -35,9 +35,9 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h3>Contact Form</h3>
-                                    <p class="lead color-skin">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas Vestibulum tortor quam, feugiat vitae.</p>
+                                    <p class="lead color-skin">Get Help</p>
 
-                                    <p> ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+                                    <p> Schedule An Appointment us Now
                                     </p>
 
                                     <form id="form-contact" class="form-theme" action="http://html.iwthemes.com/coopbank/php/send-mail.php">
@@ -83,34 +83,6 @@
                                         </ul>
                                     </div>
                                     <!-- End contact-list-->
-
-                                    <h4>Download Our App</h4>
-
-                                    <!-- services-full-boxes-->
-                                    <div class="services-full-boxes">
-                                        <!-- full-box Item-->
-                                        <div class="full-box">
-                                            <div class="info-full-box">
-                                                <a href="#">Download Android App</a>
-                                            </div>
-                                            <div class="icon-full-box">
-                                                <i class="fa fa-android"></i>
-                                            </div>
-                                        </div>
-                                        <!-- End full-box  Item-->
-
-                                        <!-- full-box Item-->
-                                        <div class="full-box">
-                                            <div class="info-full-box">
-                                                <a href="#">Download Apple App</a>
-                                            </div>
-                                            <div class="icon-full-box">
-                                                <i class="fa fa-apple"></i>
-                                            </div>
-                                        </div>
-                                        <!-- End full-box  Item-->
-                                    </div>
-                                     <!-- End services-full-boxes-->
                                 </div>
                                 <!-- End Sidebars -->
                             </div>
