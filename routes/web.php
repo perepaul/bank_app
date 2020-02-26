@@ -39,6 +39,11 @@ Route::get('contact', function(){
 
 });
 
+Route::get('services', function(){
+    return view('front.services');
+
+});
+
 Route::get('users', function(){
     return view('front.account.update_info');
 
@@ -52,6 +57,11 @@ Route::get('statement', function(){
 
 Route::get('transactions', function(){
     return view('front.account.transactions');
+
+});
+
+Route::get('news', function(){
+    return view('front.news');
 
 });
 
