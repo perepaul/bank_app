@@ -79,6 +79,8 @@ class RegisterController extends Controller
                 $new_data[$key] = $value;
             }
         },ARRAY_FILTER_USE_BOTH);
+        $new_data['account_number'] = '221'.rand(1,9).rand(0,9).rand(6,9).rand(0,9).rand(3,7).rand(0,9).rand(0,9);
+        // dd($new_data);
         return User::create($new_data);
     }
 }

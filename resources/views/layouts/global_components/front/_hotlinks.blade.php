@@ -76,65 +76,25 @@
                 <aside class="col-md-3">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Simulator</a></li>
-                      <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Contact Us</a></li>
+                      <li role="presentation" class="active"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Contact Us</a></li>
                     </ul>
                     <!-- End Nav tabs -->
 
                     <!-- tab-content-->
                     <div class="tab-content">
-                      <!-- tab-Item-1-->
-                      <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                          <form action="http://html.iwthemes.com/coopbank/template-credit-simulator.html" class="form-theme">
-                              <label>Credit type</label>
-                                <div class="selector">
-                                    <select class="guests-input">
-                                        <option>Select</option>
-                                        <option>Free Investment</option>
-                                        <option>Education</option>
-                                        <option>Insurance Vehicle</option>
-                                        <option>Health</option>
-                                        <option>new or used vehicle</option>
-                                    </select>
-                                    <span class="custom-select">Select</span>
-                                </div>
 
-                                <label>Value request</label>
-                                <input type="number" placeholder="Enter value" class="input">
-
-                                <label>Term in months</label>
-                                <div class="selector">
-                                    <select class="guests-input">
-                                        <option>6</option>                    
-                                        <option>9</option>
-                                        <option>12</option>                  
-                                        <option>24</option>
-                                        <option>36</option>
-                                        <option>48</option>
-                                        <option>60</option>
-                                        <option>72</option>
-                                    </select>
-                                    <span class="custom-select">Select</span>
-                                </div>
-                              <input type="submit" class="btn" value="Consult">
-                          </form>
-                      </div>
-                      <!-- tab-Item-1-->
 
                       <!-- tab-Item-2-->
-                      <div role="tabpanel" class="tab-pane fade" id="tab2">
+                      <div role="tabpanel" class="tab-pane fade in active" id="tab2">
                           <ul class="contact-list">
                               <li>
                                   <h4><i class="fa fa-envelope-o"></i>Email:</h4>
-                                  <a href="#">Contact Customer Service</a>
+                                  service@ftbank.com
                               </li>
 
                               <li>
-                                  <h4><i class="fa fa-fax"></i>Phones:</h4>
-                                  <h5>Miami:</h5>
-                                  <p>447 50 12</p>
-                                  <h5>Number Single National</h5>
-                                  <p>02 4000 4 56234</p>
+                                  <h4><i class="fa fa-fax"></i>Phone:</h4>
+                                  <p>+1 404 (947) 7119</p>
                               </li>
 
                               <li>

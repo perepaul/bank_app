@@ -1,3 +1,6 @@
+@php
+    $title = 'My Account';
+@endphp
 @extends('layouts.front')
 
 @section('content')
@@ -32,16 +35,18 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
                             <form action="#" class="form-theme">
                                 <label>First Name</label>
-                            <input type="text" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" >
+                            <input type="text" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" disabled>
 
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Gordon" class="input" value="{{auth()->user()->last_name}}" >
+                                <input type="text" placeholder="Gordon" class="input" value="{{auth()->user()->last_name}}" disabled>
 
-                                <label>Address  1</label>
-                                <input type="text" placeholder="Address line 1" class="input" value="{{auth()->user()->account_number}}" >
+                                <label>Social Security Number (SSN)</label>
+                                <input type="text" placeholder="" class="input" value="{{auth()->user()->ssn}}" disabled>
 
-                                <label>Address  2</label>
-                                <input type="text" placeholder="Address line 2" class="input" value="{{auth()->user()->account_number}}" >
+                                <label>Account Number</label>
+                                <input type="text" placeholder="" class="input" value="{{auth()->user()->account_number}}" disabled>
+
+
 
                             </form>
                         </div>

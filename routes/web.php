@@ -41,10 +41,11 @@ Route::get('services', function(){
 
 // User area routes
 
-Route::get('users', function(){
-    return view('front.account.update_info');
-
+Route::group(['middleware' => ['auth'],'prefix'=>'account'], function () {
+    Route::get('/', 'UserController@index');
+    Route::get('update', 'UserController@edit')->name('update-account');
 });
+
 
 
 Route::get('statement', function(){

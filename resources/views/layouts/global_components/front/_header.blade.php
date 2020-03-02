@@ -21,14 +21,7 @@
                 <div class="head-info-login" style="padding:0 8px">
                     @if (auth()->check())
                     <p>Welcome Back {{ auth()->user()->first_name}}!</p>
-                    @else
-                    <p>Make here your online transactions!</p>
-                    <span style="margin-right:10px">
-                        <a href="{{route('register')}}" style="color:black">Sign Up</a>
-                    </span>
-                    <span>
-                        <a href="{{route('login')}}" style="color:black">Sign In</a>
-                    </span>
+
                     @endif
                 </div>
             </div>

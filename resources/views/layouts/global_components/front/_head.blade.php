@@ -12,6 +12,7 @@
     <!-- Responsive CSS -->
     <link href="{{asset('assets/front/css/theme-responsive.css')}}" rel="stylesheet" media="screen">
     <!-- Skins Theme -->
+    <link href="{{asset('assets/front/css/skins/yellow/yellow.css')}}" rel="stylesheet" media="screen">
     <link href="#" rel="stylesheet" media="screen" class="skin">
 
     <!-- Favicons -->

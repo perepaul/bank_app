@@ -64,16 +64,31 @@
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false">
                             <b class="glyphicon glyphicon-user"></b>
                           </a>
-                          <ul class="dropdown-menu">
+                          <ul class="dropdown-menu" style="padding-left:9px">
+                            @if (!auth()->check())
+
                             <li style="margin-bottom:10px; border-bottom-color:none">
-                              Sign up
+                            <a href="{{route('register')}}">Sign up</a>
                             </li>
                             <li style="margin-bottom:10px; border-bottom-color:none">
-                                Sign in
+                                <a href="{{route('login')}}">Sign in</a>
                             </li>
+                            @else
+                            <li style="margin-bottom:10px; border-bottom-color:none">
+                                <a href="{{'/'}}">Dashboard</a>
+
+                            </li>
+                            <hr>
                             <li style="margin-bottom:10px">
-                                Logout
+                                <a href="javascript:void(0)" onclick="$('#logout-form').submit()">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+
                             </li>
+
+                            @endif
+
                           </ul>
                         </li>
                     </ul>
