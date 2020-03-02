@@ -5,7 +5,7 @@
             <!-- SLIDE  -->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="assets/front/img/slide/slide-02.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/ftbank.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -27,7 +27,7 @@
                     data-start="1200"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">Check CoopBank included features and options
+                    data-easing="easeOutExpo">Check Fifth Bank included features and options
                 </div>
 
                 <!-- LAYER NR. 3 -->
@@ -50,7 +50,7 @@
             <!-- SLIDE  -->
             <li data-transition="zoomout" data-slotamount="7"  data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="assets/front/img/slide/slide-03.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                <img src="assets/front/img/ftbank_family.jpg"  alt="fullslide1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 1 -->
@@ -83,7 +83,7 @@
                     data-start="1200"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">Check Coopbank included multiple features
+                    data-easing="easeOutExpo">Check Fifth Bank included multiple features
                 </div>
 
                 <!-- LAYER NR. 3 -->
@@ -132,7 +132,7 @@
                     data-start="800"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">DO YOU NEED A NEW
+                    data-easing="easeOutExpo">DO YOU NEED A
                 </div>
 
                 <!-- LAYER NR. 2 -->
@@ -143,7 +143,7 @@
                     data-start="1000"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">LINE OF CREDIT?
+                    data-easing="easeOutExpo">Loan?
                 </div>
 
                 <!-- LAYER NR. 3 -->
@@ -154,7 +154,7 @@
                     data-start="1200"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">Check Coopbank included multiple features
+                    data-easing="easeOutExpo">Check fifth Bank
                 </div>
             </li>
             <!-- END SLIDE 01-->
@@ -195,7 +195,7 @@
                     data-start="1200"
                     data-splitin="lines"
                     data-splitout="none"
-                    data-easing="easeOutExpo">Check Coopbank included multiple features
+                    data-easing="easeOutExpo">Check Fifth Bank included multiple features
                 </div>
 
                 <!-- LAYER NR. 3 -->
