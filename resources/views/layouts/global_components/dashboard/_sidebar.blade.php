@@ -3,8 +3,8 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-          <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+          <div class="sidebar-brand-icon">
+            <i class="fas fa-university"></i>
           </div>
           <div class="sidebar-brand-text mx-3">FT Bank</div>
         </a>
@@ -23,37 +23,32 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-           <!-- Heading -->
-           <div class="sidebar-heading">
-            Users
-          </div>
-
           <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user_collapse" aria-expanded="true" aria-controls="user_collapse">
               <i class="fas fa-fw fa-users"></i>
               <span>Users</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="user_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Users</h6>
-                <a class="collapse-item" href="buttons.html">View User</a>
+                <a class="collapse-item" href="buttons.html">View Users</a>
                 <a class="collapse-item" href="cards.html">Create Users</a>
               </div>
             </div>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item ">
             <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-book"></i>
-                <span>Tickets</span>
+                <i class="fas fa-fw fa-phone"></i>
+                <span>Contacts</span>
             </a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item ">
             <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-email"></i>
-                <span>Cash Out Request</span>
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Cash Out Requests</span>
             </a>
         </li>
 

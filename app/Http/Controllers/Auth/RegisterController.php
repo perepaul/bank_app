@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        // dd(app('request'));c
     }
 
     /**
@@ -50,9 +51,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'ssn'=>['required','string','min:9','max:9'],
+            'gender'=>['required']
         ]);
     }
 
@@ -64,10 +68,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $new_data = array();
+        array_filter($data,function($value,$key) use (&$new_data){
+            if($key == '_token'){
+
+            }elseif($key == 'password_confirmation'){
+
+            }else{
+
+                $new_data[$key] = $value;
+            }
+        },ARRAY_FILTER_USE_BOTH);
+        return User::create($new_data);
     }
 }

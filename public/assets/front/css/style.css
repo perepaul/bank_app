@@ -1,38 +1,38 @@
 @charset "utf-8";
-/* ============================== 
+/* ==============================
 	- Template Name: CoopBank - Banking, Cooperatives and Employee funds Theme
 	- Autor: Iwthemes
 	- Email: support@iwthemes.com
 	- Name File: style.css
 	- Version 1.0 - Created on 16 Nov 2015
-	- Website: http://www.iwthemes.com 
+	- Website: http://www.iwthemes.com
 	- Copyright: (C) 2015
-================================= */	
+================================= */
 
-/* ---------------------- 
+/* ----------------------
 	Stylesheet Table Guide
 -------------------------
 
 01. Import styles
 	-  bootstrap.css  - include resetes ( Media querys, grid-responsive,layout).
-	-  bootstrap-theme.css	
+	-  bootstrap-theme.css
 	-  jquery.fancybox.css (Ligbox Styles)
 	-  theme-options.css (Skins And Layouts Options)
 	-  animate.css (Animations Styles)
-	-  owl.carousel.css 
+	-  owl.carousel.css
 	-  owl.theme.css
 	-  font-awesome.min.css
 	-  Form.css
 	-  revolution.css
 	-  extralayers.css
 	-  settings.css
-	-  Google Fonts  - Open sans,Montserrat And Raleway	 
-	
+	-  Google Fonts  - Open sans,Montserrat And Raleway
+
 02. Basic Elements
-	-  Standar Styles	
+	-  Standar Styles
 	-  Titles Vertical Lines
 	-  Title Big
-	-  Title left resalt 
+	-  Title left resalt
 
 0.3.  HEADER
 	-  Logo
@@ -43,24 +43,24 @@
 	-  Nav Search
 	-  Slider
 	-  Info Login
-	-  Nav Tabs 
+	-  Nav Tabs
 	-  Contact List
-	-  breadcrumbs 
+	-  breadcrumbs
 	-  Section Titles
 
-0.4.  GENERAL STRUCTURE	
+0.4.  GENERAL STRUCTURE
 	-  Content Info
 	-  Boxed Services
-	-  Boxed Services 2 
-	-  Item Boxes 2 
-	-  Services Process 
+	-  Boxed Services 2
+	-  Item Boxes 2
+	-  Services Process
 	-  Services Mini Boxes
 	-  Services Full Boxes
 	-  Services Lines
- 	-  Clients 	
+ 	-  Clients
  	-  subtitle-downloads
  	-  image-clients-downloads
- 	-  Parallax Secion 
+ 	-  Parallax Secion
  	-  Footer
  	-  contact-footer
  	-  Logo-footer
@@ -68,7 +68,7 @@
  	-  Social
  	-  Preloader
  	-  toTop
-	-  Filters	
+	-  Filters
 	-  Page Error
 	-  Site Map
 	-  Galley
@@ -79,7 +79,7 @@
 	-  Form Theme
 	-  Contact
 	-  Sponsors
-	-  Blog Post Items 
+	-  Blog Post Items
 	-  Testimonials
 	-  Item Financial
 	-  Items Events
@@ -88,7 +88,7 @@
 	-  Prices Table
 	-  gallery Styles
 	-  Documents Downloads
-	-  User Area 
+	-  User Area
 	-  Agreement Area
 	-  credit-area
 */
@@ -139,9 +139,9 @@ body{
 	padding: 0 !important;
 	background-color: #f4f6f3;
 }
-h1, h2, h3, h4, h5, h6 {	
-	padding: 5px 0 15px 0;	
-	margin: 0;	
+h1, h2, h3, h4, h5, h6 {
+	padding: 5px 0 15px 0;
+	margin: 0;
 	color: #32373e;
 	font-weight: normal;
 	font-family: 'Raleway', sans-serif;
@@ -234,7 +234,7 @@ ul.single-carousel,
 	opacity: 0.8;
 }
 .btn-primary:hover{
-	color: #fff;	
+	color: #fff;
 }
 .paddings{
 	padding: 60px 0;
@@ -547,7 +547,7 @@ iframe.video{
 	margin-top: 40% !important;
 }
 /* Content Central ------------------------*/
-.content-central{	
+.content-central{
 	max-width: 1230px;
 	margin: 0px auto;
 	border-radius: 5px 5px 0 0;
@@ -1452,7 +1452,7 @@ aside h4{
 }
 /* subtitle-downloads -----------------------------------------------------*/
 .subtitle-downloads{
-	position: relative;	
+	position: relative;
 	z-index: 5;
 	text-align: center;
 	margin: 30px auto;
@@ -1813,7 +1813,7 @@ aside h4{
 	font-size: 0.875rem;
 }
 .social li span{
-	margin-right: 15px;	
+	margin-right: 15px;
 	padding: 5px 3px;
 	-webkit-transition: 0.2s all ease;
 	-moz-transition: 0.2s all ease;
@@ -1941,7 +1941,7 @@ aside h4{
 	overflow:hidden;
 	float:left;
 	opacity: 0;
-	-moz-opacity: 0;	
+	-moz-opacity: 0;
 }
 #toTop:active, #toTop:focus {
 	outline:none;
@@ -2048,35 +2048,35 @@ aside h4{
 	margin: 20px 0 30px 0;
 }
 /* Sitemap ---------------------------------------------------------------*/
-.sitemap{ 
-	float:left; 
-	display:inline; 
-	width:370px; 
-	margin-right:2px; 
-	font-size: 0.875rem;  
+.sitemap{
+	float:left;
+	display:inline;
+	width:370px;
+	margin-right:2px;
+	font-size: 0.875rem;
 	padding:10px 0 0 0;
 	background:url("../img/img-theme/line_tree1.gif") left repeat-y;
 }
-.sitemap li{ 
-	float:left; 
-	width:347px; 
-	padding-left:25px; 
+.sitemap li{
+	float:left;
+	width:347px;
+	padding-left:25px;
 	line-height: 35px;
 	background:url("../img/img-theme/line_tree2.gif") 0 center no-repeat;
 }
-.sitemap li.has_sub{ 
+.sitemap li.has_sub{
 	background:url("../img/img-theme/line_tree2.gif") 0 17px no-repeat;
 }
-.sitemap li a{ 
-	color:#666; 
-	position:relative; 
+.sitemap li a{
+	color:#666;
+	position:relative;
 	text-decoration:none;
 }
 .sitemap li a:hover{
 	text-decoration:underline;
 }
-.sitemap ul{ 
-	width:132px;  
+.sitemap ul{
+	width:132px;
 	padding-top:0;
 }
 /* Sidebar Post -------------------------------------------------------*/
@@ -2272,7 +2272,7 @@ aside h4{
 }
 /* Sponsors --------------------------*/
 .carousel-sponsors{
-	margin:50px auto 150px auto; 
+	margin:50px auto 150px auto;
 }
 /* Blog Post Items ---------------------*/
 .blog-post-section .item-blog-post{
@@ -2331,7 +2331,7 @@ aside h4{
 	-ms-transition: 0.5s all ease;
 	transition: 0.3s all ease;
 }
-.item-blog-post:hover img{	
+.item-blog-post:hover img{
 	 -moz-transform: scale(1.2);
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
@@ -2741,12 +2741,12 @@ aside h4{
 	max-width: 83%;
 }
 .overlay{
-	position: absolute;	
+	position: absolute;
 	left: 0;
 	top: 0px;
-	opacity: 0;	
+	opacity: 0;
 	width: 100%;
-	height: 100%;	
+	height: 100%;
 	z-index: 1;
 	-webkit-transition: 0.3s all ease;
 	-moz-transition: 0.3s all ease;
@@ -2756,7 +2756,7 @@ aside h4{
 }
 .item-gallery:hover .overlay{
 	opacity: 1;
-	cursor: pointer;	
+	cursor: pointer;
 	-webkit-transition: 0.3s all ease;
 	-moz-transition: 0.3s all ease;
 	-o-transition: 0.3s all ease;

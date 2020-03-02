@@ -239,13 +239,13 @@
 }
 .fcorn-register {
     font-family: "Source Sans Pro";
-    width: 550px;
+    /* max-width: 550px; */
     background: #fff;
     border: 1px solid #eee;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     box-shadow: 0 0 2px rgba(60, 60, 60, 0.1);
     margin: 0 auto;
-    padding: 10px 35px
+    /* padding: 10px 35px */
 }
 .fcorn-register p.register-info {
     background: #b5b5b5;

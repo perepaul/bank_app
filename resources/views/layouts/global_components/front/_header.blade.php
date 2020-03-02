@@ -7,8 +7,8 @@
                 <div class="icon-logo">
                     <i class="fa fa-university"></i>
                 </div>
-                <a href="{{route('home')}}">
-                    Coop Bank
+                <a href="{{route('home')}}" style="font-size:25px;">
+                    {{config('app.name')}}
                     <span>Your money is safe.</span>
                 </a>
             </div>

@@ -1,6 +1,6 @@
 <!-- footer-->
 <footer id="footer">
-  
+
 
     <!-- Items Footer -->
     <div class="container">
@@ -18,14 +18,14 @@
                          </li>
                         <li class="location">
                             <i class="fa fa-home"></i> <a href="#"> Av new stret - New York</a>
-                        </li>                                   
+                        </li>
                     </ul>
                     <div class="logo-footer">
                         <div class="icon-logo">
                             <i class="fa fa-university"></i>
                         </div>
                         <a href="index.html">
-                            Fifth Bank
+                            {{config('app.name')}}
                             <span>Your money is safe.</span>
                         </a>
                     </div>
@@ -62,8 +62,8 @@
                                 <button class="btn btn-primary" type="submit" name="subscribe" >Go!</button>
                             </span>
                         </div>
-                    </form>   
-                    <div id="result-newsletter"></div>    
+                    </form>
+                    <div id="result-newsletter"></div>
                </div>
             </div>
             <!-- End Newsletter Footer -->
@@ -81,9 +81,9 @@
                     <ul class="nav-footer">
                         <li><a href="/preview">HOME</a> </li>
                         {{-- <li><a href="#">COMPANY</a></li> --}}
-                        <li><a href="/about">ABOUT</a></li> 
-                        <li><a href="#">NEWS</a></li> 
-                        <li><a href="#">PORTFOLIO</a></li>                
+                        <li><a href="/about">ABOUT</a></li>
+                        <li><a href="#">NEWS</a></li>
+                        <li><a href="#">PORTFOLIO</a></li>
                         <li><a href="/contact">CONTACT</a></li>
                     </ul>
                     <!-- End Nav Footer-->
@@ -95,5 +95,5 @@
         </div>
     </div>
     <!-- footer Down-->
-</footer>      
+</footer>
 <!-- End footer-->
