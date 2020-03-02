@@ -17,28 +17,19 @@
 
         <!-- Login Area -->
         <div class="col-md-8 col-lg-7">
-            <div class="info-login">
-                <div class="head-info-login">
+            <div class="info-login" style="width:auto">
+                <div class="head-info-login" style="padding:0 8px">
+                    @if (auth()->check())
+                    <p>Welcome Back {{ auth()->user()->first_name}}!</p>
+                    @else
                     <p>Make here your online transactions!</p>
-                    <span>
-                        <a href="template-register-area.html">Register Here</a>
+                    <span style="margin-right:10px">
+                        <a href="{{route('register')}}" style="color:black">Sign Up</a>
                     </span>
-                </div>
-                <div class="form-theme">
-                    <form action="http://html.iwthemes.com/coopbank/template-user-area.html">
-                        <div class="selector">
-                              <select class="guests-input">
-                                  <option>Citizenship Card</option>
-                                  <option>Foreigners Card</option>
-                                  <option>Tax identification number</option>
-                                  <option>Identity Card</option>
-                                  <option>Username</option>
-                              </select>
-                              <span class="custom-select">Document type</span>
-                          </div>
-                         <input type="number" placeholder="Document Number" class="input">
-                        <input type="submit" class="btn" value="Go">
-                    </form>
+                    <span>
+                        <a href="{{route('login')}}" style="color:black">Sign In</a>
+                    </span>
+                    @endif
                 </div>
             </div>
         </div>

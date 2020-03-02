@@ -16,33 +16,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test',function(){
-    return view('dashboard.test');
-});
-Route::get('preview',function(){
     return view('front.home');
-});
+})->name('home');
 
-Route::get('preview', function(){
-    return view('front.home');
-});
+
+Route::get('news', function(){
+    return view('front.news');
+
+})->name('news');
 
 Route::get('about', function(){
     return view('front.about');
-});
+})->name('about');
 
 Route::get('contact', function(){
     return view('front.contact_us');
 
-});
+})->name('contact');
 
 Route::get('services', function(){
     return view('front.services');
 
-});
+})->name('services');
+
+// User area routes
 
 Route::get('users', function(){
     return view('front.account.update_info');
@@ -60,14 +57,12 @@ Route::get('transactions', function(){
 
 });
 
-Route::get('news', function(){
-    return view('front.news');
 
-});
 
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
+// Admin routes

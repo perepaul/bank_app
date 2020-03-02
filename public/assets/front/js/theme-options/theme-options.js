@@ -5,7 +5,7 @@
   	/* Selec your skin and layout Style */
 	function interface(){
 	    // Skin value
-	    var skin = "yellow"; // green (default), red ,yellow,purple,blue, orange, purple, pink, cocoa, custom 
+	    var skin = "yellow"; // green (default), red ,yellow,purple,blue, orange, purple, pink, cocoa, custom
 
 	    // Boxed value
 	    var bg_color_header = "color-header-1"; // color-header-, color-header-2,color-header-3,color-header-4,color-header-5,color-header-6,color-header-7,color-header-8 (default)
@@ -14,16 +14,16 @@
 
 	    //var layout = "layout-semiboxed"; // layout-semiboxed(default), layout-boxed, layout-boxed-margin ,layout-wide
 
-	    //Only in boxed version 
-	    var bg = "none";  // none (default), bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10, bg11 
+	    //Only in boxed version
+	    var bg = "none";  // none (default), bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10, bg11
 
 	    // Theme Panel - disable panel options
 	    var themepanel = "1"; // 1 (default - enable), 0 ( disable)
 
-	    $(".skin").attr("href", "css/skins/"+ skin + "/" + skin + ".css");
-	    $("#fond-header").addClass(bg_color_header).addClass(bg_parrner_header);	
-	    $("#layout").addClass(layout);	
-	    $("body").addClass(bg);   
+	    $(".skin").attr("href", "assets/front/css/skins/"+ skin + "/" + skin + ".css");
+	    $("#fond-header").addClass(bg_color_header).addClass(bg_parrner_header);
+	    $("#layout").addClass(layout);
+	    $("body").addClass(bg);
 	    $("#theme-options").css('opacity' , themepanel);
 	    return false;
   	}
@@ -165,7 +165,7 @@
 		$('#theme-options').animate({
 			left: $left
 		},{
-			duration: 500			
+			duration: 500
 		});
 
 	});
@@ -184,7 +184,7 @@
 			$('#theme-options').delay(800).animate({
 				left: "-220px"
 			},{
-				duration: 500				
+				duration: 500
 			});
 			$.cookie('displayoptions', "1");
 		}
