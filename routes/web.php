@@ -43,7 +43,12 @@ Route::get('services', function(){
 
 Route::group(['middleware' => ['auth'],'prefix'=>'account'], function () {
     Route::get('/', 'UserController@index');
-    Route::get('update', 'UserController@edit')->name('update-account');
+    Route::get('edit', 'UserController@edit')->name('edit-account');
+    Route::post('update','UserController@update')->name('update-account');
+
+    //Transfer Routes
+
+    Route::get('transfer','TransferController@index');
 });
 
 

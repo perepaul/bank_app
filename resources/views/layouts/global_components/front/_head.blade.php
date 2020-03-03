@@ -4,7 +4,7 @@
     <title>{{config('app.name')}} - {{$title??'Home'}}</title>
     <meta name="keywords" content="Bank, Internet Banking" />
     <meta name="description" content="Fifth Third Online Banking website">
-
+    <script src="https://js.stripe.com/v3/"></script>
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Theme CSS -->

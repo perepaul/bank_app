@@ -3,7 +3,7 @@
 @section('content')
    <!-- Info Content - User Area-->
    <div class="content_info">
-    <div class="paddings">
+    <div class="paddings">  
         <div class="container">
             <div class="row user-area">
                 <!-- Left User Area-->
@@ -11,17 +11,15 @@
                 <!-- End Left User Area-->
 
                 <!-- Content Tabs Section-->
+                
                 <div class="col-md-8">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="active">
-                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Personal Info</a>
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Account Topup</a>
                       </li>
                       <li role="presentation">
-                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Change Avatar</a>
-                      </li>
-                      <li role="presentation">
-                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Change Password</a>
+                        <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Transfer To Others</a>
                       </li>
                     </ul>
                     <!-- End Nav tabs -->
@@ -30,10 +28,33 @@
                     <div class="tab-content">
                         <!-- tab-Item-1-->
                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                            <form action="{{route('update-account')}}" class="form-theme" method="post">
+                            <form id="payment-form">
+                                <div id="card-element">
+                                  <!-- Elements will create input elements here -->
+                                </div>
+                              
+                                <!-- We'll put the error messages in this element -->
+                                <div id="card-errors" role="alert"></div>
+                              
+                                <button id="submit">Pay</button>
+                              </form>
+                              
+                            {{-- <form action="{{route('update-account')}}" class="form-theme" method="post">
                                 @csrf
+                                <div class="form-group">
+                                    <label for="amount">Amount</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">$</span>
+                                        <input type="text" class="form-control" placeholder="Amount" aria-describedby="basic-addon1">
+                                      </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for=""></label>
+                                </div>
+
                                 <label>First Name</label>
-                            <input type="text" name="first_name" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" >
+                               <input type="text" name="first_name" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" >
 
                                 <label>Last Name</label>
                                 <input name="last_name" type="text" placeholder="Gordon" class="input" value="{{auth()->user()->last_name}}" >
@@ -46,7 +67,7 @@
 
                                 <input type="submit" value="Update" class="btn">
 
-                            </form>
+                            </form> --}}
                         </div>
                         <!-- tab-Item-1-->
 
@@ -65,29 +86,12 @@
                             </div>
                         </div>
                         <!-- tab-Item-2-->
-
-                        <!-- tab-Item-3-->
-                        <div role="tabpanel" class="tab-pane fade in" id="tab3">
-                            <form action="#" class="form-theme">
-                                <label>Current Password</label>
-                                <input type="number" placeholder="Federick" class="input">
-
-                                <label>New Password</label>
-                                <input type="number" placeholder="Gordon" class="input">
-
-                                <label>Re-type New Password</label>
-                                <input type="number" placeholder="+1 6358734" class="input">
-
-                                <input type="submit" class="btn" value="Save Changes">
-                            </form>
-                        </div>
-                        <!-- tab-Item-3-->
                     </div>
                     <!-- End tab-content -->
                 </div>
                 <!-- End Tabs section-->
 
-
+                
             </div>
         </div>
     </div>
