@@ -1,28 +1,31 @@
 @extends('layouts.front')
 
-@section('slider')
-    @include('layouts.global_components.front._slider')
+@section('background_img')
+@include('layouts.global_components.front._background')
+{{-- end hotlinks section --}}
+    
 @endsection
 
 @section('content')
-{{-- hotlinks section --}}
-@include('layouts.global_components.front._hotlinks')
-{{-- end hotlinks section --}}
 
-<!-- Info Content  - Clients Downloads Area -->
-@include('layouts.global_components.front._client_count')
-{{-- end info conent -client Downloads Area --}}
+            <!-- Info Content  - Clients Downloads Area -->
+            @include('layouts.global_components.front._customer_support')
+            {{-- end info conent -client Downloads Area --}}
 
-<!-- Info Content Blog Post-->
-@include('layouts.global_components.front._blog_post')
-<!-- end Info Content Blog Post-->
+            <!-- Info Content Blog Post-->
+            @include('layouts.global_components.front._order_card')
+            <!-- end Info Content Blog Post-->
 
-<!-- Info Content Process-->
-@include('layouts.global_components.front._process')
-<!-- End Info Content Process-->
+            <!-- Info Content Process-->
+            @include('layouts.global_components.front._mini_about_us')
+            <!-- End Info Content Process-->
 
-<!-- Sponsors Container-->
-@include('layouts.global_components.front._sponsors')
-<!-- End Sponsors Container-->
+            @include('layouts.global_components.front._statistics')
 
+            @include('layouts.global_components.front._news_letter')
+
+              <!-- footer Container-->
+              @include('layouts.global_components.front._footer')
+              <!-- End footer Container-->
+    
 @endsection

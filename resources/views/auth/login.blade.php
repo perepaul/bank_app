@@ -1,64 +1,40 @@
 @extends('layouts.front')
 
-@section('title')
-    <div class="section-title-01 section-title-01-small">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Login</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
 
 @section('content')
-    <div class="content_info">
-        <!-- title-vertical-line-->
-        <div class="title-vertical-line">
-            <h2><span>Login</span></h2>
-            <p class="lead">Signin to your internet Banking Account.</p>
-        </div>
-        <!-- End title-vertical-line-->
-
-        <!-- Info Resalt-->
-        <div class="paddings">
-            <!-- Container Area - services-process -->
-            <div class="container">
-                <div class="row">
-                    @if ($errors)
-                        {{-- @dd($errors) --}}
-                            {{-- <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div> --}}
-                        @endif
-
-                    <form action="/login" method="post" class="fcorn-register container col-md-8 col-md-push-2 ">
-                        <div style="margin-top: 45px">
-
-                                @csrf
-                                @method('post')
-                                <p><input type="email" name="email" placeholder="Email Address" required="" value="{{old('email')}}">
-                                </p>
-                                <p><input  name="password" type="password" placeholder="Password" required="">
-                                </p>
-                                <div class="text-right">
-                                    <input class="btn btn-primary" type="submit" value="Register Now"></p>
-                                </div>
-
-                            </div>
-                        </form>
-
-
-
-                </div>
+<section class="section one-screen-page bg-primary-dark">
+    <div class="one-screen-page-inner">
+<div class="page-content text-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-4">
+          <!-- Tabs-->
+          <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
+            <!-- Nav tabs-->
+            <!-- Tab panes-->
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tabs-1-1">
+                <h3>Login</h3>
+                <!-- RD Mailform-->
+                <form class="rd-form form-lg rd-mailform">
+                  <div class="form-wrap">
+                    <input class="form-input" id="login-email" type="email" name="email" data-constraints="@Email @Required">
+                    <label class="form-label" for="login-email">E-mail</label>
+                  </div>
+                  <div class="form-wrap">
+                    <input class="form-input" id="login-password" type="password" name="password" data-constraints="@Required">
+                    <label class="form-label" for="login-password">Password</label>
+                  </div>
+                  <button class="button button-lg button-round button-block button-primary" type="submit">Sign In</button>
+                </form>
+                <div class="group-sm group-sm-justify group-middle social-items"></div>
+              </div>
             </div>
-            <!-- End Container Area - services-process -->
+          </div>
         </div>
-        <!-- End Info Resalt-->
+      </div>
     </div>
+  </div>
+    </div>
+</section>
 @endsection
