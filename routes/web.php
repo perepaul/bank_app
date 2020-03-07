@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,3 +67,11 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin routes
+Route::get('admin/login','Admin\AdminController@showAdminLogin')->name('admin-login');
+Route::group(['prefix' => 'admin', "middleware"=>['isAdmin']], function () {
+    Route::namespace('Admin')->group(function() {
+        Route::get('/', 'AdminController@index');
+        Route::get('users','AdminController@getUsers')->name('get-users');
+    });
+
+});
