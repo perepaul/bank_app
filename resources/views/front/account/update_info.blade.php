@@ -30,18 +30,22 @@
                     <div class="tab-content">
                         <!-- tab-Item-1-->
                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                            <form action="{{route('update-account',[auth()->user()->id])}}" class="form-theme">
+
+                            <form action="{{route('update-account')}}" class="form-theme" method="post">
+                                @csrf
                                 <label>First Name</label>
-                            <input name="first_name" type="text" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" >
+                            <input type="text" name="first_name" placeholder="Federick" class="input" value="{{auth()->user()->first_name}}" >
 
                                 <label>Last Name</label>
                                 <input name="last_name" type="text" placeholder="Gordon" class="input" value="{{auth()->user()->last_name}}" >
 
                                 <label>Address  1</label>
-                                <input name="address1" type="text" placeholder="Address line 1" class="input" value="{{auth()->user()->account_number}}" >
+                                <input name="address1" type="text" placeholder="Address line 1" class="input" value="{{auth()->user()->address1}}" >
 
                                 <label>Address  2</label>
-                                <input name="address2" type="text" placeholder="Address line 2" class="input" value="{{auth()->user()->account_number}}" >
+                                <input name="address2" type="text" placeholder="Address line 2" class="input" value="{{auth()->user()->address2}}" >
+
+                                <input type="submit" value="Update" class="btn">
 
                             </form>
                         </div>

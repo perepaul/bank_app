@@ -11,7 +11,7 @@
     <div class="panel panel-default">
       <!-- List group -->
       <ul class="list-group">
-      <li class="list-group-item"><a href="{{route('update-account')}}">Update Info</a></li>
+      <li class="list-group-item"><a href="{{route('edit-account')}}">Update Info</a></li>
         <li class="list-group-item"><a href="#">Transfers</a></li>
         <li class="list-group-item"><a href="#">Statements</a></li>
         <li class="list-group-item"><a href="#">Payments</a></li>

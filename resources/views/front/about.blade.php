@@ -1,101 +1,80 @@
 @extends('layouts.front')
 
-@section('title')
-<div class="section-title-01">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h3>About Us</h3>
-                <h5>Lets get acquainted</h5>
-                <p>Learn about how we are improving the lives of people in our community through financial empowerment.</p>
-            </div>
-
-            <div class="col-md-5 hidden-xs hidden-sm">
-                <div class="image-title-section">
-                    <img src="assets/front/img/women-head.png" alt="" class="img-responsive">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
 @section('content')
 
-<!-- Info Content - Boxes Services-->
-<div class="content_info">
-    <div class="padding-top padding-bottom-mini">
-        <!-- Container Area - Boxes Services -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="assets/front/img/gallery/3.jpg" alt="" class="img-responsive">
-                </div>
-
-                <div     class="col-md-7">
-                    <div class="title-subtitle">
-                        <h5>Why Fifth Third Bank</h5>
-                        <h3>Our Culture</h3>
-                        <p class="lead">
-
-                            Respect & Inclusion are among our Core Values. A powerful foundation for all we do, these values speak to the very heart of embracing diversity. Personal beliefs, perspectives and needs matter…and are heard. When everyone is valued, we’re stronger as partners on our journey together. Here inclusion means actively seeking and welcoming diversity. To foster the engagement of all employees, we support dedicated employee business resource groups and inclusion councils that infuse our culture with respect and inclusiveness.</p>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Our Values</h5>
-                            <p>Our Core Values guide us and are woven into the fabric of everything we do. They bring us together for a common purpose: To provide the very best experience for our customers. Team members embrace these values and find inspiring ways of incorporating them into their work every day.</p>
-                        </div>
-
-                        <div class="col-md-6">
-                            <h5>Diversity</h5>
-                            <p>Respect & Inclusion are among our Core Values. A powerful foundation for all we do, these values speak to the very heart of embracing diversity. Personal beliefs, perspectives and needs matter…and are heard. When everyone is valued, we’re stronger as partners on our journey together.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Col boxes-services -->
-                <div class="col-md-12 padding-top">
-                  <!-- boxes-services -->
-                   <div class="row boxes-services">
-                      <!-- item-boxe-services -->
-                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                          <div class="item-boxed-service">
-                              <h4>Loan <br>Request</h4>
-                              <span>Helping to fulfill your dreams.</span>
-                              <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
-                          </div>
-                      </div>
-                      <!-- End item-boxe-services -->
-
-                      <!-- item-boxe-services -->
-                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                          <div class="item-boxed-service">
-                              <h4>I want to save or <br>invest</h4>
-                              <span>Advise your decisions</span>
-                              <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
-                          </div>
-                      </div>
-                      <!-- End item-boxe-services -->
-
-                      <!-- item-boxe-services -->
-                      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                          <div class="item-boxed-service">
-                              <h4>Request items <br>online</h4>
-                              <span>We offer you tools</span>
-                              <a href="#"><i class="fa fa-plus-circle"></i> View more</a>
-                          </div>
-                      </div>
-                      <!-- End item-boxe-services -->
-                   </div>
-                   <!-- End boxes-services -->
-                </div>
-                <!-- End Col boxes-services -->
-            </div>
+      <!-- Breadcrumbs -->
+      <section class="section section-bredcrumbs">
+        <div class="container context-dark breadcrumb-wrapper">
+          <h1>About</h1>
+          <ul class="breadcrumbs-custom">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">About</li>
+          </ul>
         </div>
-        <!-- End Container Area - Boxes Services -->
-    </div>
-</div>
-<!-- End Info Content - Boxes Services-->
+      </section>
+      <!-- A Wide Range of Banking & Financial Services-->
+      <section class="section section-lg">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-12 col-xl-10">
+              <h2>Let's Get Acquainted</h2>
+              <div class="heading-6 block-lg">
+                Your banking arrangements should fit with your lifestyle, your plans and your ambitions. We can draw on a full range of services to create a highly personalised solution, designed to work for you.
+                <div>
+          </div>
+        </div>
+      </section>
+      <!-- Services-->
+      <section class="section section-lg bg-gray-100">
+        <div class="container">
+          <div class="service-list">
+            <div class="row row-20 service-item">
+              <div class="col-md-6"><img src="{{asset('assets/front/images/services-1-540x327.jpg')}}" alt="" width="540" height="327"/>
+              </div>
+              <div class="col-md-6">
+                <h3 class="title">Checkings Account</h3>
+                <p class="exeption">The right checking account can help move you closer to your goals, no matter where you are in life. Whether you want to simply handle monthly bills and everyday purchases, or find new ways to earn perks and rewards, a Fifth Bank personal checking account is a convenient way to manage your money with confidence.</p>
+                {{-- <a class="button button-lg button-primary" href="single-service.html">Learn more</a> --}}
+              </div>
+            </div>
+            <div class="row row-20 service-item">
+              <div class="col-md-6"><img src="{{asset('assets/front/images/services-2-540x327.jpg')}}" alt="" width="540" height="327"/>
+              </div>
+              <div class="col-md-6">
+                <h3 class="title">Private Banking</h3>
+                <p class="exeption">Our dedicated team offers banking services with a personalised focus. The banking services they provide are supported by the Fifth Bank global network. 
+                    Our Private Banking focuses on the unique banking and financial needs of high-earning individuals who prefer personalised banking services. Private Banking is about building long-term relationships and offering personal guidance. 
+                    We offer you a full range of banking, investment and fiduciary products and services. Private Banking leverages the resources and over 150 years of proven expertise of the Fifth Bank Group in asset management, research, 
+                    securities & foreign exchange trading, credit and corporate finance. 
+                    We are therefore able to provide custom solutions for complex individual situations. </p>
+              </div>
+            </div>
+            <div class="row row-20 service-item">
+              <div class="col-md-6"><img src="{{asset('assets/front/images/services-3-540x327.jpg')}}" alt="" width="540" height="327"/>
+              </div>
+              <div class="col-md-6">
+                <h3 class="title">Mortgages</h3>
+                <p class="exeption">Fifth Third Bank offers a wide range of mortgage lending solutions to help meet your specific need. Whether you're thinking about buying your first home or that vacation home you've always wanted, we offer mortgage solutions for needs big and small—and everything in between</p>
+                {{-- <a class="button button-lg button-primary" href="single-service.html">Learn more</a> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Call to action-->
+      <section class="section section-xs bg-primary-gradient">
+        <div class="container">
+          <div class="box-cta">
+            <div class="box-cta-inner">
+              <h3>Choose Your <span class="font-weight-bold">Bank Card</span> Now!</h3>
+            </div>
+            <div class="box-cta-inner"><a class="button button-lg button-white" href="single-service.html">Order Card</a></div>
+          </div>
+        </div>
+      </section>
+
+         <!-- footer Container-->
+         @include('layouts.global_components.front._footer')
+         <!-- End footer Container-->
 
 @endsection

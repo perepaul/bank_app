@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -35,9 +36,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        dd($request);
+        $user_id = auth()->user()->id;
+
+        $user = User::find($user_id);
+        $keys = ['first_name','last_name','address1','address2'];
+        $user->update($request->only($keys));
     }
 
     /**

@@ -1,35 +1,14 @@
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-    <!-- Basic -->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>{{config('app.name')}} - {{$title??'Home'}}</title>
-    <meta name="keywords" content="Bank, Internet Banking" />
-    <meta name="description" content="Fifth Third Online Banking website">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Theme CSS -->
-    <link href="{{asset('assets/front/css/style.css')}}" rel="stylesheet" media="screen">
-    <!-- Responsive CSS -->
-    <link href="{{asset('assets/front/css/theme-responsive.css')}}" rel="stylesheet" media="screen">
-    <!-- Skins Theme -->
-    <link href="{{asset('assets/front/css/skins/yellow/yellow.css')}}" rel="stylesheet" media="screen">
-    <link href="#" rel="stylesheet" media="screen" class="skin">
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="{{asset('assets/front/img/icons/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{asset('assets/front/img/icons/apple-touch-icon.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/front/img/icons/apple-touch-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('assets/front/img/icons/apple-touch-icon-114x114.png')}}">
-
-    <!-- Head Libs -->
-    <script src="{{asset('assets/front/js/libs/modernizr.js')}}"></script>
-
-    <!--[if IE]>
-        <link rel="stylesheet" href="{{asset('assets/front/css/ie/ie.css')}}">
-    <![endif]-->
-
-    <!--[if lte IE 8]>
-        <script src="{{asset('assets/front/js/responsive/html5shiv.js')}}"></script>
-        <script src="{{asset('assets/front/js/responsive/respond.js')}}"></script>
-    <![endif]-->
-</head>
+    <link rel="icon" href="{{asset('assets/front/images/favicon.ico')}}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,700,900">
+    <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/fonts.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}" id="main-styles-link">
+  </head>

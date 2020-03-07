@@ -1,101 +1,56 @@
-<!-- Nav-->
-<nav id="menu">
-    <div class="navbar yamm navbar-default">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+      <!-- Page Header-->
+      <header class="section page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="20px" data-xl-stick-up-offset="20px" data-xxl-stick-up-offset="20px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                  <!-- RD Navbar Toggle-->
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <!-- RD Navbar Brand-->
+                  <div class="rd-navbar-brand"><a class="brand" href="/"><img class="brand-logo-dark" src="{{asset('assets/front/images/logo-150x25.png')}}" alt="" width="150" height="25"/><img class="brand-logo-light" src="{{asset('assets/front/images/logo-inverse-150x25.png')}}" alt="" width="150" height="25"/></a>
+                  </div>
                 </div>
-                <div id="navbar-collapse-1" class="navbar-collapse collapse">
-                    <!-- Nav Bar Items -->
-                    <ul class="nav navbar-nav">
-                        <!-- Home Nav Items -->
-                        <li class="">
-                          <a href="{{route('home')}}" >
-                            Home
-                          </a>
-                        </li>
-                        <!-- End Home Nav Items -->
-
-                        <!-- About Nav Item -->
-                        <li class="">
-                          <a href="{{route('about')}}" >
-                            About
-                          </a>
-                        </li>
-                        <!-- End About Nav Item -->
-
-                        <!-- Services Nav Item -->
-
-                        <li class="">
-                          <a href="{{route('services')}}" >
-                            Our Services
-                          </a>
-                        </li>
-
-                        <!-- News Nav Item -->
-                        <li class="dropdown">
-                          <a href="{{route('news')}}">
-                            News
-                          </a>
-                        </li>
-                        <!-- End News Nav Item -->
-
-
-
-                        <!-- Contact Us Nav Item -->
-                        <li class="dropdown">
-                          <a href="{{route('contact')}}" class="dropdown-toggle">
-                            Contact Us
-                          </a>
-                        </li>
-                        <!-- End Contact Us Nav Item -->
+                <div class="rd-navbar-main-element">
+                  <div class="rd-navbar-nav-wrap">
+                    <!-- RD Navbar Nav-->
+                    <ul class="rd-navbar-nav">
+                      <li class="rd-nav-item active"><a class="rd-nav-link" href="/">Home</a>
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/about">About</a>
+                      </li>
+                      {{-- <li class="rd-nav-item"><a class="rd-nav-link" href="services.html">Services</a>
+                        <!-- RD Navbar Dropdown-->
+                        <ul class="rd-menu rd-navbar-dropdown">
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="single-service.html">Single service</a></li>
+                        </ul>
+                      </li> --}}
+                      {{-- <li class="rd-nav-item"><a class="rd-nav-link" href="/contact">Login</a> --}}
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/contact">Contacts</a>
+                      </li>
                     </ul>
-                    <!-- End Nav Bar Items -->
-
-                    <!-- Search Form -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Forms -->
-                        <li class="dropdown">
-                          <a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false">
-                            <b class="glyphicon glyphicon-user"></b>
-                          </a>
-                          <ul class="dropdown-menu" style="padding-left:9px">
-                            @if (!auth()->check())
-
-                            <li style="margin-bottom:10px; border-bottom-color:none">
-                            <a href="{{route('register')}}">Sign up</a>
-                            </li>
-                            <li style="margin-bottom:10px; border-bottom-color:none">
-                                <a href="{{route('login')}}">Sign in</a>
-                            </li>
-                            @else
-                            <li style="margin-bottom:10px; border-bottom-color:none">
-                                <a href="{{'/'}}">Dashboard</a>
-
-                            </li>
-                            <hr>
-                            <li style="margin-bottom:10px">
-                                <a href="javascript:void(0)" onclick="$('#logout-form').submit()">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-
-                            </li>
-
-                            @endif
-
-                          </ul>
-                        </li>
-                    </ul>
-                    <!-- End Search Form -->
+                  </div>
                 </div>
+                <div class="rd-navbar-aside-element">
+                  <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
+                  {{-- <div class="rd-navbar-collapse rd-navbar-info">
+                    <div class="icon mdi mdi-cellphone-iphone"></div><a href="tel:+{{config('app.phone')}}">{{config('app.phone')}}</a>
+                  </div> --}}
+                  <div class="rd-navbar-collapse rd-navbar-info">
+                    @if(!auth()->check())
+                    <a href="{{route('login')}}" >Login</a>
+                    @else
+                    <img src="{{auth()->user()->image}}" class="" style="width:3.5rem; height:3.5rem; border-radius:50%" alt="">
+                    <a href="{{url('accouts')}}" >{{auth_user_full_name(auth())}}</a>
+                    @endif
+
+                  </div>
+                  
+                </div>
+              </div>
             </div>
+          </nav>
         </div>
-    </div>
-</nav>
-<!-- End Nav-->
+      </header>
