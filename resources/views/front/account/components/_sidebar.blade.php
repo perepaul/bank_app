@@ -4,7 +4,7 @@
         <h4>{{auth()->user()->last_name." ".auth()->user()->first_name}}</h4>
         <span class="country"><img src="{{asset('assets/front/img/country/us.png')}}" alt=""> {{auth()->user()->state}}</span>
         <ul class="list-styles">
-            <li><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></li>
+            <li><p>Balance: {{"Banlance here!"}}</p></li>
         </ul>
     </div>
 

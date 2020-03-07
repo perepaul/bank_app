@@ -40,6 +40,8 @@
         @include('layouts.global_components.dashboard._logout-modal')
 
         @include('layouts.global_components.dashboard._scripts')
+
+        @yield('js')
     </body>
 
 </html>

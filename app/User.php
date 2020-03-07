@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,13 +13,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
+   /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password','ssn','gender','account_number',
+        'account_id','first_name','last_name', 'email', 'password','visible_password','gender','account_number','status','is_admin','balance','address','image',
     ];
 
     /**
@@ -39,30 +40,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function getImageAttribute($value)
+    {
+        return asset('profile_images/'.$value);
+    }
+
+
 
 
 }

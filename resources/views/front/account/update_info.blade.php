@@ -30,6 +30,7 @@
                     <div class="tab-content">
                         <!-- tab-Item-1-->
                         <div role="tabpanel" class="tab-pane fade in active" id="tab1">
+
                             <form action="{{route('update-account')}}" class="form-theme" method="post">
                                 @csrf
                                 <label>First Name</label>
