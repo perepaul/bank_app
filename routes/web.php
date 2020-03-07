@@ -17,27 +17,31 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'web'], function () {
     Route::get('login', function(){
         return "login";
-    })->name('login');
-    
+    })->name('user-login');
+
+    Route::get('login', function(){
+        return "login";
+    })->name('admin-login');
+
     Route::get('/', function () {
         return view('front.home');
     })->name('home');
-    
+
     Route::get('about', function(){
         return view('front.about');
     })->name('about');
-    
+
     Route::get('contact', function(){
         return view('front.contact_us');
-    
+
     })->name('contact');
 });
 
 
 // User area routes
 
-Route::group(['middleware' => ['auth'],'prefix'=>'dashboard'], function () {
-  
+Route::group(['middleware' => ['isUser'],'prefix'=>'dashboard'], function () {
+
     Route::namespace('User')->group(function(){
 
         Route::get('/', function(){
@@ -45,7 +49,7 @@ Route::group(['middleware' => ['auth'],'prefix'=>'dashboard'], function () {
         });
     });
 
- 
+
 
 
 });

@@ -14,7 +14,7 @@ class AdminController extends Controller
         $this->users = $users;
     }
     public function showAdminLogin(){
-        return view('auth.admin.login');
+        return "admin login";
     }
 
     /**

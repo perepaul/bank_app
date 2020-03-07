@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class RedirectAdmin
+class DashboardAccess
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,9 @@ class RedirectAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->check() && !$request->expectsJson())
+        if(!auth()->check())
         {
-            return redirect()->route('admin-login');
-        }
-        if(!$request->user()->is_admin){
-            return redirect()->route('admin-login');
+            return redirect()->route('user-login');
         }
         return $next($request);
     }
