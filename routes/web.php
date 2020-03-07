@@ -14,41 +14,40 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'web'], function () {
+    Route::get('login', function(){
+        return "login";
+    })->name('login');
+    
+    Route::get('/', function () {
+        return view('front.home');
+    })->name('home');
+    
+    Route::get('about', function(){
+        return view('front.about');
+    })->name('about');
+    
+    Route::get('contact', function(){
+        return view('front.contact_us');
+    
+    })->name('contact');
+});
 
-Route::get('/', function () {
-    return view('front.home');
-})->name('home');
-
-
-Route::get('news', function(){
-    return view('front.news');
-
-})->name('news');
-
-Route::get('about', function(){
-    return view('front.about');
-})->name('about');
-
-Route::get('contact', function(){
-    return view('front.contact_us');
-
-})->name('contact');
-
-Route::get('services', function(){
-    return view('front.services');
-
-})->name('services');
 
 // User area routes
 
-Route::group(['middleware' => ['auth'],'prefix'=>'account'], function () {
-    Route::get('/', 'UserController@index');
-    Route::get('edit', 'UserController@edit')->name('edit-account');
-    Route::post('update','UserController@update')->name('update-account');
+Route::group(['middleware' => ['auth'],'prefix'=>'dashboard'], function () {
+  
+    Route::namespace('User')->group(function(){
 
-    //Transfer Routes
+        Route::get('/', function(){
+            return "lol";
+        });
+    });
 
-    Route::get('transfer','TransferController@index');
+ 
+
+
 });
 
 
@@ -63,11 +62,14 @@ Route::get('transactions', function(){
 
 });
 
+// Route::get('dashboard', function(){
+//     return view('front.user_dashboard.index');
+
+// });
 
 
 
 
-Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
