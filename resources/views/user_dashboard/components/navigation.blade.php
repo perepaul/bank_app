@@ -1,7 +1,7 @@
         <!-- navigation profile  -->
         <div class="app-header header-shadow bg-secondary header-text-light">
             <div class="app-header__logo">
-                <div class="text-lg text-white"><h5>Fifth/Third Bank</h5></div>
+                <div class="text-lg text-white">Fifth Third</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -48,9 +48,10 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="-1" class="dropdown-item">Profile</button>
-                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                            <button type="button" tabindex="-1" class="dropdown-item">Log out</button>
+                                            <form action="logout" method="get">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item">Log out</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -1,3 +1,6 @@
+@php
+    $title = "About";
+@endphp
 @extends('layouts.front')
 
 @section('content')

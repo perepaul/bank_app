@@ -138,11 +138,11 @@ class UserController extends Controller
         $data = $request->except('_token');
         $data['visible_password'] = $request->password;
         $data['is_admin'] = 0;
-        $data['image'] = $file_name = uniqid().'.'.$request->file('image')->extension();
-        $check = User::create($data);
-        if($check && $request->hasFile('image')){
+        if($request->hasFile('image')){
+            $data['image'] = $file_name = uniqid().'.'.$request->file('image')->extension();
             $request->file('image')->storeAs('/profile_images', $file_name,'public');
         }
+        $check = User::create($data);
         
         session()->flash('message','User Created Successfully');
         return redirect()->back();
@@ -178,6 +178,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $last_part = explode('/',$user->image);
+        if(end($last_part) != 'default.png'){
+            unlink('storage/profile_images/'.end($last_part));
+        }
+
+        $user->delete();
+        return redirect()->back();
+
     }
 }
