@@ -14,14 +14,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'web'], function () {
-    Route::get('login', function(){
-        return "login";
-    })->name('user-login');
 
-    Route::get('login', function(){
-        return "login";
-    })->name('admin-login');
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('logout',function(){
+        $user_type = auth()->user()->is_admin;
+        auth()->logout();
+        if($user_type){
+            return redirect()->to('/admin');
+        }else{
+            return redirect()->to('/dashboard');
+        }
+    })->name('logout');
+    Route::namespace('User')->group(function(){
+        Route::post('adduser','UserController@store')->name('adduser');
+        Route::post('updateuser/{id}','UserController@update')->name('updateuser');
+        Route::get('login', 'UserController@showLogin')->name('user-login-form');
+        Route::post('login', 'UserController@login')->name('user-login');
+    });
+
+    Route::namespace('Admin')->group(function(){
+        
+        Route::get('admin/login','AdminController@showAdminLogin')->name('admin-login-form');
+        Route::post('admin/login','AdminController@login')->name('admin-login');
+    });
+
+    
 
     Route::get('/', function () {
         return view('front.home');
@@ -44,9 +62,12 @@ Route::group(['middleware' => ['isUser'],'prefix'=>'dashboard'], function () {
 
     Route::namespace('User')->group(function(){
 
-        Route::get('/', function(){
-            return "lol";
-        });
+        Route::get('/', 'UserController@index');
+        Route::get('transfer','UserController@transfer')->name('transfer');
+        Route::post('make-transfer', 'UserController@makeTransfer');
+        Route::get('transfers','UserController@transfers')->name('transfers');
+        Route::get('statement', 'UserController@statement')->name('statement');
+
     });
 
 
@@ -78,7 +99,7 @@ Route::get('transactions', function(){
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Admin routes
-Route::get('admin/login','Admin\AdminController@showAdminLogin')->name('admin-login');
+
 Route::group(['prefix' => 'admin', "middleware"=>['isAdmin']], function () {
     Route::namespace('Admin')->group(function() {
         Route::get('/', 'AdminController@index');

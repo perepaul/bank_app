@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                             'account_number'        =>       $faker->unique()->bankAccountNumber,
                             'status'                =>       1,
                             'is_admin'              =>       1,
-                            'balance'               =>       1000,
+                            'balance'               =>       1000000,
                             'address'               =>       $faker->streetAddress
                         ],
                         [
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
                             'account_number'        =>       $faker->unique()->bankAccountNumber,
                             'status'                =>       2,
                             'is_admin'              =>       0,
-                            'balance'               =>       1000,
+                            'balance'               =>       1000000,
                             'address'               =>       $faker->streetAddress
                         ],
                         [
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                             'account_number'        =>       $faker->unique()->bankAccountNumber,
                             'status'                =>       1,
                             'is_admin'              =>       0,
-                            'balance'               =>       1000,
+                            'balance'               =>       10000000,
                             'address'               =>       $faker->streetAddress
                         ]
 

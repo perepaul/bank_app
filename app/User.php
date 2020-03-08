@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Transfer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -47,9 +48,21 @@ class User extends Authenticatable
 
     public function getImageAttribute($value)
     {
-        return asset('profile_images/'.$value);
+        return asset('storage/profile_images/'.$value);
     }
 
+
+    public function transfers()
+    {
+      
+        return $this->hasMany(Transfer::class);
+        
+    }
+
+    public function getBalanceAttribute($value)
+    {
+        return '$'.$value;
+    }
 
 
 
