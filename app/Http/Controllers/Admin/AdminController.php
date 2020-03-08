@@ -14,8 +14,37 @@ class AdminController extends Controller
         $this->users = $users;
     }
     public function showAdminLogin(){
-        return "admin login";
+        return view('auth.admin.login');
     }
+
+
+    public function login(Request $request)
+    {
+        // Validator::make($request->all(),)
+        $user_name = $request->username;
+        $password = $request->password;
+
+        $user = User::where('is_admin',1)
+        ->where('email',$user_name)
+        ->orWhere('account_id', $user_name)
+        ->orWhere('account_number',$user_name)
+        ->first();
+
+
+
+        if(!$user)
+        {
+            return redirect()->back()->with(['username'=>'We were unable to find your account']);
+        }
+
+        if(auth()->attempt(['email'=>$user->email,'password'=>$password]))
+        {
+            return redirect()->to('/admin');
+        }
+    }
+
+
+
 
     /**
      * Display a listing of the resource.

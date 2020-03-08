@@ -29,7 +29,7 @@
     </table>
 
     <div class="modal fade user-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <form autocomplete="off">
+        <form action="" autocomplete="off" method="POST" enctype="multipart/form-data">
             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -91,6 +91,19 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-row" id="last-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option selected>Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                </div>
+                            </div>
                     </div>
 
 
@@ -107,6 +120,7 @@
 
 @section('js')
     <script>
+        var elements;
         $('.user-modal').on('hide.bs.modal', function (e) {
             if($('#user_image').length)
             {
@@ -117,15 +131,20 @@
             {
                 $('#upload_image_wrapper').remove();
             }
+
+            $('#submit-btn').removeAttr('disabled')
+
+            ReadOnly(elements,true)
         })
 
         function launchNewModal(){
+            $('#upload_image_wrapper').remove();
             __fillModalData('new')
             $('.user-modal').modal();
         }
 
-        function launchViewModal(data){
-            __fillModalData(data,true);
+        function launchViewModal(mode,data){
+            __fillModalData(mode,data,true);
             $('.user-modal').modal();
         }
         function launchEditModal(mode, data){
@@ -134,18 +153,19 @@
         }
 
         function __addFileInput(){
-            return '<div class="form-group" id="upload_image_wrapper"><label for="image">Account Picture</label><input type="file" class="form-control-file" name="image" id="image"></div>'
+            return '<div class="form-group col-md-6" id="upload_image_wrapper"><label for="image">Account Picture</label><input type="file" class="form-control-file" name="image" id="image"></div>'
         }
         function __fillModalData(mode = 'new', data = {}, readonly = false )
         {
             var form = $('.modal form');
-            image = "<center id='user_image'><img src="+data.image+" class='img-responsive rounded-circle' style='height:6rem;width:6rem; margin-left:auto'></center><br/>"
+            image = "<center id='user_image'><img src="+data.image+" class='img-responsive rounded-circle' style='height:6rem;width:6rem; margin-left:auto'><br/></center>"
 
             var submit_btn = $(form).find('#submit-btn');
-            el = $(form).find('input, select').not('input[type="hidden"]');
+            el = elements = $(form).find('input, select').not('input[type="hidden"]');
 
 
-        if(data.length > 0){
+  
+        if(mode != 'new'){
 
             $(el['0']).val(data.account_id)
             $(el['1']).val(data.account_number);
@@ -156,31 +176,47 @@
             $(el['6']).val(data.address)
             $(el['7']).val(data.balance)
             $(el['8']).val(data.status)
+            $(el['9']).val(data.gender)
             $(form).find('.modal-body').prepend(image);
         }
-            $(form).find('.modal-body').append(__addFileInput());
+
+        $(form).find('#last-row').append(__addFileInput());
+
 
             if(readonly)
             {
-                $(el).each(function(index, ele){
-                    $(ele).attr('readonly','true')
-                });
-                $(form).find()
+                ReadOnly(el);
 
             }
             if(mode == 'new')
             {
-                $(form).find('.modal-body').append(__addFileInput());
+                $(form).attr('action',"{{route('adduser')}}");
 
                 $(submit_btn).text('Create');
             }
             else if(mode == 'edit'){
-                $(submit_btn).text('Edit');
+                $(form).attr('action',"/updateuser/"+data.id);
+                $(submit_btn).text('Update');
+
 
             }else if(mode == 'view'){
-                $(submit_btn).attr('readonly',true);
+                $(submit_btn).attr('disabled',true);
 
             }
+        }
+
+        function ReadOnly(eles, unset=false)
+        {
+            $(eles).each(function(index, ele){
+                if(unset == true){
+                    $(ele).removeAttr('disabled')
+                    $(ele).val('')
+
+                }else{
+
+                    $(ele).attr('disabled','true')
+                }
+            });
         }
     </script>
 @endsection

@@ -19,4 +19,5 @@
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
     <link href="{{asset('assets/account/css/main.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@8.5.0/dist/sweetalert2.min.css" rel="stylesheet">
 </head>

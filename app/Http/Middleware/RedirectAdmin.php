@@ -17,10 +17,10 @@ class RedirectAdmin
     {
         if(!auth()->check() && !$request->expectsJson())
         {
-            return redirect()->route('admin-login');
+            return redirect()->route('admin-login-form');
         }
         if(!$request->user()->is_admin){
-            return redirect()->route('admin-login');
+            return redirect()->route('user-login');
         }
         return $next($request);
     }
