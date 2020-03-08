@@ -10,7 +10,7 @@
                   <!-- RD Navbar Toggle-->
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
-                  <div class="rd-navbar-brand"><a class="brand" href="/"><img class="brand-logo-dark" src="{{asset('assets/front/images/logo-150x25.png')}}" alt="" width="150" height="25"/><img class="brand-logo-light" src="{{asset('assets/front/images/logo-inverse-150x25.png')}}" alt="" width="150" height="25"/></a>
+                  <div class="rd-navbar-brand"><a class="brand" href="/"><img class="brand-logo-dark" src="{{asset('assets/front/images/logo.jpg')}}" alt="" width="150" height="25"/><img class="brand-logo-light" src="{{asset('assets/front/images/logo.jpg')}}" alt="" width="150" height="25"/></a>
                   </div>
                 </div>
                 <div class="rd-navbar-main-element">
