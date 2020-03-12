@@ -251,10 +251,10 @@ class UserController extends Controller
         {
             $user_last_transtaction_amount = 0;
         }else{
-            $user_last_transtaction_amount = substr($user_last_transtaction_amount,1)[0];
+            $user_last_transtaction_amount = $user_last_transtaction_amount;
         }
 
-        // dd(gettype($user_last_transtaction_amount));
+        // dd($user_last_transtaction_amount);
 
 
 
