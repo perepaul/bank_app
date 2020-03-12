@@ -29,6 +29,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::namespace('User')->group(function(){
         Route::delete('deleteuser/{id}','UserController@destroy')->name('deleteuser');
         Route::post('adduser','UserController@store')->name('adduser');
+        Route::delete('deleteuser/{id}','UserController@destroy')->name('deleteuser');
         Route::post('updateuser/{id}','UserController@update')->name('updateuser');
         Route::get('login', 'UserController@showLogin')->name('user-login-form');
         Route::post('login', 'UserController@login')->name('user-login');
@@ -54,6 +55,8 @@ Route::group(['middleware' => 'web'], function () {
         return view('front.contact_us');
 
     })->name('contact');
+
+    Route::post('contact',"ContactController@store")->name('contact-us');
 });
 
 
