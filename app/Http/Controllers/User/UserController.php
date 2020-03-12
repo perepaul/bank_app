@@ -72,9 +72,6 @@ class UserController extends Controller
                 "success"=>false,
                 "message"=>"Insufficient Funds",
             ],400);
-        }else{
-            $user->balance -= $request->amount;
-            $user->save();
         }
 
         return response()->json([
