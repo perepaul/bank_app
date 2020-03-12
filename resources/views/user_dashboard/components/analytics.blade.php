@@ -80,7 +80,7 @@
                         </div>
                         <div class="widget-content-right">
                             <br>
-                            <div class="widget-numbers text-success">{{auth()->user()->balance}}</div>
+                            <div class="widget-numbers text-success">${{auth()->user()->balance}}</div>
                         </div>
                     </div>
                 </div>
