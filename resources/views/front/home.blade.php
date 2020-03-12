@@ -13,7 +13,7 @@
             {{-- end info conent -client Downloads Area --}}
 
             <!-- Info Content Blog Post-->
-            @include('layouts.global_components.front._order_card')
+            {{--@include('layouts.global_components.front._order_card')--}}
             <!-- end Info Content Blog Post-->
 
             <!-- Info Content Process-->

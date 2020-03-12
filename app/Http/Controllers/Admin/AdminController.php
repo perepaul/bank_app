@@ -64,7 +64,7 @@ class AdminController extends Controller
     {
         $page_data = get_users_page_details();
         // dd($page_data);
-        $users =  $this->users::paginate(15);
+        $users =  $this->users::where('is_admin',0)->paginate(15);
         // $btn_name = 'Add User';
         // $btn_icon = 'fa-plus';
         // $page = 'Users';

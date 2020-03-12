@@ -44,7 +44,7 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="account_id">Account #</label>
+                                    <label for="account_id">User ID</label>
                                     <input type="text" class="form-control" id="account_id" name="account_id" placeholder="123456" >
                                 </div>
                                 <div class="form-group col-md-6">
@@ -64,6 +64,32 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
+                                    <label for="middle_name">Middle Name</label>
+                                    <input type="text" class="form-control" id="middle_name" name="middle_name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="mother_name">Mother's Name</label>
+                                    <input type="text" class="form-control" id="mother_name" name="mother_name">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phone_number">Phone Number <small>add country code e.g 234</small></label>
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="account_type">Account Type</label>
+                                    <select name="account_type" id="account_type" class="form-control">
+                                    <option value="Savings">Savings </option>
+                                    <option value="Checking">Checking </option>
+                                    <option value="Recurring Deposit">Recurring Deposit</option>
+                                    <option value="Fixed Deposit">Fixed Deposit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" >
                                 </div>
@@ -78,8 +104,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="banlance">Banlance</label>
-                                    <input type="text" class="form-control" id="banlance">
+                                    <label for="balance">Banlance</label>
+                                    <input type="text" class="form-control" id="balance"  name="balance">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="status">Status</label>
@@ -164,19 +190,23 @@
             el = elements = $(form).find('input, select').not('input[type="hidden"]');
 
 
-  
+
         if(mode != 'new'){
 
             $(el['0']).val(data.account_id)
             $(el['1']).val(data.account_number);
             $(el['2']).val(data.first_name);
             $(el['3']).val(data.last_name)
-            $(el['4']).val(data.email)
-            $(el['5']).val(data.visible_password)
-            $(el['6']).val(data.address)
-            $(el['7']).val(data.balance)
-            $(el['8']).val(data.status)
-            $(el['9']).val(data.gender)
+            $(el['4']).val(data.middle_name)
+            $(el['5']).val(data.mother_name)
+            $(el['6']).val(data.phone_number)
+            $(el['7']).val(data.account_type)
+            $(el['8']).val(data.email)
+            $(el['9']).val(data.visible_password)
+            $(el['10']).val(data.address)
+            $(el['11']).val(data.balance)
+            $(el['12']).val(data.status)
+            $(el['13']).val(data.gender)
             $(form).find('.modal-body').prepend(image);
         }
 

@@ -17,7 +17,7 @@
             <div class="tab-content">
               <div class="tab-pane fade show active" id="tabs-1-1">
                 <h3>Login</h3>
-                
+
                 <!-- RD Mailform-->
               <form class="rd-form form-lg " action="{{route('user-login')}}" method="POST">
                   @csrf
@@ -30,8 +30,8 @@
                   </div>
                   @endif
                   <div class="form-wrap">
-                    <input class="form-input" id="login-email" type="username" name="username" data-constraints=" @Required">
-                    <label class="form-label" for="login-email">E-mail Or User #</label>
+                    <input class="form-input" id="login-email" type="username" name="username" data-constraints=" @Required" value="{{old('username')}}">
+                    <label class="form-label" for="login-email">E-mail Or User ID</label>
                   </div>
                   <div class="form-wrap">
                     <input class="form-input" id="login-password" type="password" name="password" data-constraints=" @Required">

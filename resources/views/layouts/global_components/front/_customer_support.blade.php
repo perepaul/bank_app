@@ -1,23 +1,16 @@
       <!-- Advantages-->
       <section class="section section-sm section-sm-2 bg-primary-gradient">
         <div class="container text-center">
-          <div class="row row-30">
+          <div class="row row-30 justify-content-between">
             <div class="col-md-6 col-lg-3 wow fadeInRight">
               <div class="list-icon list-icon-white">
                 <div class="list-icon-title"><span class="icon-item thin-icon-map-marker"></span>
                   <div class="title">Various Locations</div>
                 </div>
-                <div class="list-icon-body">We have offices in many countries including the USA, the UK, Norway, France, Spain, Japan, and China.</div>
+                <div class="list-icon-body">We have offices in many countries including the USA.</div>
               </div>
             </div>
-            <div class="col-md-6 col-lg-3 wow fadeInRight" data-wow-delay="0.1s">
-              <div class="list-icon list-icon-white">
-                <div class="list-icon-title"><span class="icon-item thin-icon-mobile"></span>
-                  <div class="title">Mobile Banking Apps</div>
-                </div>
-                <div class="list-icon-body">Get instant access to your account on any device using our banking apps and browser solutions.</div>
-              </div>
-            </div>
+        
             <div class="col-md-6 col-lg-3 wow fadeInRight" data-wow-delay="0.2s">
               <div class="list-icon list-icon-white">
                 <div class="list-icon-title"><span class="icon-item mercury-icon-social"></span>

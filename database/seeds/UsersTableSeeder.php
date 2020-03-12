@@ -13,13 +13,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $account_type = array('Savings','Checking','Recurring Deposit','Fixed Deposit');
         $password = 'secret';
         $users = [
                         [
-                            'account_id'            =>       $faker->unique()->randomDigit,
+                            'account_id'            =>       $faker->unique()->bankAccountNumber,
                             'first_name'            =>       $faker->unique()->firstName,
                             'last_name'             =>       $faker->unique()->lastName,
-                            'email'                 =>       'admin@ftbank.com',
+                            'middle_name'           =>       $faker->unique()->lastName,
+                            'account_type'          =>       $faker->randomElement($account_type),
+                            'phone_number'          =>       $faker->phoneNumber,
+                            'mother_name'           =>       $faker->firstNameFemale,
+                            'email'                 =>       'admin@5th-3rd.com',
                             'password'              =>       $password,
                             'visible_password'      =>       $password,
                             'gender'                =>       1,
@@ -30,10 +35,14 @@ class UsersTableSeeder extends Seeder
                             'address'               =>       $faker->streetAddress
                         ],
                         [
-                            'account_id'            =>       $faker->unique()->randomDigit,
+                            'account_id'            =>       $faker->unique()->bankAccountNumber,
                             'first_name'            =>       $faker->unique()->firstName,
                             'last_name'             =>       $faker->unique()->lastName,
-                            'email'                 =>       'user1@ftbank.com',
+                            'middle_name'           =>       $faker->unique()->lastName,
+                            'account_type'          =>       $faker->randomElement($account_type),
+                            'phone_number'          =>       $faker->phoneNumber,
+                            'mother_name'           =>       $faker->firstNameFemale,
+                            'email'                 =>       'user1@5th-3rd.com',
                             'password'              =>       $password,
                             'visible_password'      =>       $password,
                             'gender'                =>       1,
@@ -44,10 +53,14 @@ class UsersTableSeeder extends Seeder
                             'address'               =>       $faker->streetAddress
                         ],
                         [
-                            'account_id'            =>       $faker->unique()->randomDigit,
+                            'account_id'            =>       $faker->unique()->bankAccountNumber,
                             'first_name'            =>       $faker->unique()->firstName,
                             'last_name'             =>       $faker->unique()->lastName,
-                            'email'                 =>       'user2@ftbank.com',
+                            'middle_name'           =>       $faker->unique()->lastName,
+                            'phone_number'          =>       $faker->phoneNumber,
+                            'mother_name'           =>       $faker->firstNameFemale,
+                            'account_type'          =>       $faker->randomElement($account_type),
+                            'email'                 =>       'user2@5th-3rd.com',
                             'password'              =>       $password,
                             'visible_password'      =>       $password,
                             'gender'                =>       3,

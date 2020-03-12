@@ -27,6 +27,7 @@ Route::group(['middleware' => 'web'], function () {
         }
     })->name('logout');
     Route::namespace('User')->group(function(){
+        Route::delete('deleteuser/{id}','UserController@destroy')->name('deleteuser');
         Route::post('adduser','UserController@store')->name('adduser');
         Route::post('updateuser/{id}','UserController@update')->name('updateuser');
         Route::get('login', 'UserController@showLogin')->name('user-login-form');
@@ -63,8 +64,10 @@ Route::group(['middleware' => ['isUser'],'prefix'=>'dashboard'], function () {
     Route::namespace('User')->group(function(){
 
         Route::get('/', 'UserController@index');
+        Route::post('validate-otp', 'UserController@validateOtp');
         Route::get('transfer','UserController@transfer')->name('transfer');
-        Route::post('make-transfer', 'UserController@makeTransfer');
+        Route::get('send-otp','UserController@sendOtp')->name('send-otp');
+        Route::post('validate-transfer', 'UserController@makeTransfer');
         Route::get('transfers','UserController@transfers')->name('transfers');
         Route::get('statement', 'UserController@statement')->name('statement');
 

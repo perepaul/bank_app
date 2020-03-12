@@ -120,6 +120,7 @@
                                     <script>
                                         // Example starter JavaScript for disabling form submissions if there are invalid fields
                                         (function () {
+                                            var validFormData;
                                             function submitForm(data)
                                             {
                                                 const options = {
@@ -129,7 +130,7 @@
                                                         'Content-Type': 'application/json'
                                                     }
                                                 }
-                                                fetch('/dashboard/make-transfer', options)
+                                                fetch('/dashboard/validate-transfer', options)
                                                     .then(res => res.json())
                                                     .then(res => {
                                                         if(!res.success){
@@ -139,18 +140,92 @@
                                                             'error'
                                                             )
                                                         }else{
-                                                            Swal.fire(
-                                                            'Success!',
-                                                            res.message,
-                                                            'success'
-                                                            )
+                                                            // Swal.fire(
+                                                            // 'Success!',
+                                                            // res.message,
+                                                            // 'success'
+                                                            // )
+                                                            SendNValOTP()
 
-                                                            setTimeout(()=>{
-                                                                window.location.href="{{route('transfers')}}"
-                                                            },4000)
+                                                            // setTimeout(()=>{
+                                                            //     window.location.href="{{route('transfers')}}"
+                                                            // },4000)
                                                         }
                                                     })
                                             }
+
+                                             function SendNValOTP()
+                                            {
+                                                fetch('/dashboard/send-otp?amount='+validFormData.amount+'&name='+validFormData.reciepient_name)
+                                                .then(res => res.json())
+                                                .then(res => {
+                                                    if(!res.success)
+                                                    {
+                                                        Swal.fire(
+                                                            'Failed!',
+                                                            res.message,
+                                                            'error'
+                                                            )
+                                                    }else{
+                                                        validateOtp(res.message)
+                                                    }
+                                                });
+
+                                            }
+
+                                            function validateOtp (msg){
+                                                Swal.fire({
+                                                    title: msg,
+                                                    input: 'text',
+                                                    inputAttributes: {
+                                                        autocapitalize: 'off'
+                                                    },
+                                                    showCancelButton: true,
+                                                    confirmButtonText: 'Validate',
+                                                    showLoaderOnConfirm: true,
+                                                    preConfirm: (token) => {
+                                                        validFormData.token = token;
+                                                        const options = {
+                                                            method: 'POST',
+                                                            body: JSON.stringify(validFormData),
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            }
+                                                        }
+                                                                return fetch(`/dashboard/validate-otp`,options)
+                                                        .then(response => response.json())
+                                                        .then(res => {
+                                                            // console.log(res)
+                                                            if (!res.success) {
+                                                            throw new Error(res.message)
+                                                            }
+                                                            return res;
+                                                        })
+                                                        .catch(error => {
+                                                            Swal.showValidationMessage(
+                                                            `Request failed: ${error}`
+                                                            )
+                                                        })
+                                                    },
+                                                    allowOutsideClick: () => !Swal.isLoading()
+                                                    }).then((result) => {
+                                                    if (result.value.success) {
+                                                        Swal.fire(
+                                                            'Success!',
+                                                            `${result.value.message}`,
+                                                            'success'
+                                                            )
+                                                    }else{
+                                                        Swal.fire(
+                                                            'Failed!',
+                                                            `${result.value.message}`,
+                                                            'failed'
+                                                            )
+                                                    }
+                                                })
+                                            }
+
+
                                             function mustBeNumber(elements){
                                                 invalid = true
                                                 elements.map(function(element){
@@ -174,6 +249,8 @@
                                                 var validation = Array.prototype.filter.call(forms, function (
                                                 form) {
                                                     form.addEventListener('submit', function (event) {
+                                                        event.preventDefault();
+                                                        event.stopPropagation()
                                                         var amount = form.amount;
                                                         var account_number = form.account_number;
                                                         var swift_code = form.swift_code;
@@ -184,7 +261,7 @@
                                                         var account_type = form.account_type;
 
 
-                                                        event.preventDefault();
+                                                        
                                                         if(form.amount.validity.rangeOverflow === true){
                                                             var feedback =  form.amount.nextElementSibling//.style.display = "block"
                                                             feedback.innerHTML = "Amount cannot be higher than your balance"
@@ -199,7 +276,7 @@
                                                         isvalid = mustBeNumber([amount,account_number,swift_code,routing_number])
 
 
-                                                        data = {
+                                                        data = validFormData = {
                                                             "amount":amount.value,
                                                             "account_number":account_number.value,
                                                             "swift_code":swift_code.value,
@@ -212,7 +289,6 @@
                                                         
 
                                                             submitForm(data);
-                                                            console.log(form._token);
                                                         form.classList.add('was-validated');
 
                                                     

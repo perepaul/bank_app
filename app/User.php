@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\OTP;
 use App\Transfer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'account_id','first_name','last_name', 'email', 'password','visible_password','gender','account_number','status','is_admin','balance','address','image',
+        'account_id',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'account_type', 
+        'email', 
+        'password',
+        'visible_password',
+        'gender',
+        'account_number',
+        'status',
+        'is_admin',
+        'balance',
+        'address',
+        'image',
+        'phone_number',
+        'mother_name',
     ];
 
     /**
@@ -48,20 +65,20 @@ class User extends Authenticatable
 
     public function getImageAttribute($value)
     {
-        return asset('storage/profile_images/'.$value);
+        return asset('profile_images/'.$value);
     }
 
 
     public function transfers()
     {
-      
+
         return $this->hasMany(Transfer::class);
-        
+
     }
 
-    public function getBalanceAttribute($value)
+    public function otp()
     {
-        return '$'.$value;
+        return $this->hasOne(OTP::class);
     }
 
 
