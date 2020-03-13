@@ -165,12 +165,7 @@ class UserController extends Controller
         $last_3 = substr($user->account_number,-3);
 
         $acct = $first_3.'xxxx'.$last_3;
-        $msg = "Transfer from ".$acct." To ".$transfer->reciepient_name." on".$transfer->created_at." was successful. Avail. Bal. $".$balance;
-        // $msg = "Acct: ".$acct.'       ';
-        // $msg .="Date: ".$transfer->created_at.'      ';
-        // $msg .="Type: Transfer".'\\n';
-        // $msg .="To: ".$transfer->reciepient_name.'\\r\\n';
-        // $msg .="Bal: $".$user->balance;
+        $msg = "Transfer from ".$acct." To ".$transfer->reciepient_name." on ".$transfer->created_at." was successful. Avail. Bal. $".$balance;
         $param = array(
             'body'=>$msg,
             'to'=>$user->phone_number
