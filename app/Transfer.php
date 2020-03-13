@@ -16,6 +16,6 @@ class Transfer extends Model
 
     public function getAmountAttribute($value)
     {
-        return "$".$value;
+        return $value;
     }
 }

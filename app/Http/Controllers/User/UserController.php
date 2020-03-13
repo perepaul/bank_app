@@ -100,9 +100,8 @@ class UserController extends Controller
         // dd(Carbon::now()->format('U') == $expires_at->format('U')?'true':'false');
 
         $param = [
-            'body'=>'You\'re about transfer '.$request->amount.' to '.$request->name.' use '.$token.' to aughorize transfer',
-            'to'=>$user->phone_number,
-            'from'=>'5th-3rd Bank'
+            'body'=>'You\'re about to transfer '.$request->amount.' to '.$request->name.' use '.$token.' to authorize transfer',
+            'to'=>$user->phone_number
         ];
 
 
@@ -126,6 +125,10 @@ class UserController extends Controller
             $response = curl_exec($curl);
             $err = curl_error($curl);    
             curl_close($curl);
+            
+            $response = json_decode($response,true);
+
+            $bad_status = array('400001009','400005000','400000000','403000000');
 
             if ($err) {
                 return response()->json([
@@ -133,9 +136,8 @@ class UserController extends Controller
                     'message'=>'We were unable to connect to your phone, try again'
                 ]);
 
-            } else {
-                $bad_status = array('400001009','400005000','400000000','403000000');
-                $response  = json_decode($response,true);
+            } else if(isset($response['code'])){
+
                 if(in_array($response['code'],$bad_status)){
                     return response()->json([
                         'success'=>false,
@@ -147,7 +149,7 @@ class UserController extends Controller
 
         return response()->json([
             'success'=>true,
-            'message'=>'Enter Token sent to phone number'
+            'message'=>'Enter Token sent to phone'
         ],200);
 
     }
@@ -248,10 +250,10 @@ class UserController extends Controller
         {
             $user_last_transtaction_amount = 0;
         }else{
-            $user_last_transtaction_amount = $user_last_transtaction_amount;
+            $user_last_transtaction_amount = $user_last_transtaction_amount[0];
         }
 
-        // dd($user_last_transtaction_amount);
+        // dd((int) $user_last_transtaction_amount);
 
 
 
