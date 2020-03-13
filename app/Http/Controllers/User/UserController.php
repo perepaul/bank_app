@@ -105,7 +105,7 @@ class UserController extends Controller
         ];
 
 
-        if(!$data['success']){
+        if($data['success']){
 
             $curl = curl_init();    
             curl_setopt_array($curl, array(
