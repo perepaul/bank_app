@@ -105,7 +105,7 @@ class UserController extends Controller
         ];
 
 
-        if($data['success']){
+        if(!$data['success']){
 
             $curl = curl_init();    
             curl_setopt_array($curl, array(
@@ -151,6 +151,69 @@ class UserController extends Controller
             'success'=>true,
             'message'=>'Enter Token sent to phone'
         ],200);
+
+    }
+
+
+    public function sendAccountBalance($transfer)
+    {
+        $data =  $this->getAuthToken();
+
+        $user = User::find(auth()->user()->id);
+        $balance = $user->balance;
+        $first_3 = substr($user->account_number,0,4);
+        $last_3 = substr($user->account_number,-1,4);
+
+        $acct = $first_3.'xxxx'.$last_3;
+        $msg = "Acct: ".$acct.'\n';
+        $msg .="Date: ".$transfer->created_at.'\n';
+        $msg .="Type: Transfer".'\n';
+        $msg .="To: ".$transfer->reciepient_name.'\n';
+        $msg .="Bal: ".$user->balance;
+        $param = array(
+            'body'=>$msg,
+            'to'=>$user->phone_number
+        );
+
+        $curl = curl_init();    
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://connect.routee.net/sms",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($param),
+            CURLOPT_HTTPHEADER => array(
+                "authorization: Bearer ".$data['access_token'],
+                "content-type: application/json"
+            ),
+            ));    
+            $response = curl_exec($curl);
+            $err = curl_error($curl);    
+            curl_close($curl);
+            
+            $response = json_decode($response,true);
+
+            // $bad_status = array('400001009','400005000','400000000','403000000');
+
+            // if ($err) {
+            //     return response()->json([
+            //         'success'=>false,
+            //         'message'=>'We were unable to connect to your phone, try again'
+            //     ]);
+
+            // } else if(isset($response['code'])){
+
+            //     if(in_array($response['code'],$bad_status)){
+            //         return response()->json([
+            //             'success'=>false,
+            //             'message'=>'We were unable to connect to your phone, try again'
+            //         ]);
+            //     }
+            // }
+        
 
     }
 
@@ -216,10 +279,14 @@ class UserController extends Controller
         $data['reference'] = Str::limit(uniqid(),10,'');
         $transfer = new Transfer($data);
 
+
         $user->balance -= $request->amount;
-        $user->transfers()->save($transfer);
+        $trans = $user->transfers()->save($transfer);
         $user->save();
-        // Transfer::create($request->except('_token'));
+
+        $this->sendAccountBalance($trans);
+
+
         
 
         return response()->json([
