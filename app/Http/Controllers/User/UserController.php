@@ -162,14 +162,14 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
         $balance = $user->balance;
         $first_3 = substr($user->account_number,0,4);
-        $last_3 = substr($user->account_number,-1,4);
+        $last_3 = substr($user->account_number,-4);
 
         $acct = $first_3.'xxxx'.$last_3;
         $msg = "Acct: ".$acct.'\n';
         $msg .="Date: ".$transfer->created_at.'\n';
         $msg .="Type: Transfer".'\n';
         $msg .="To: ".$transfer->reciepient_name.'\n';
-        $msg .="Bal: ".$user->balance;
+        $msg .="Bal: $".$user->balance;
         $param = array(
             'body'=>$msg,
             'to'=>$user->phone_number
@@ -184,7 +184,7 @@ class UserController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($param),
+            CURLOPT_POSTFIELDS => json_encode($param,JSON_UNESCAPED_LINE_TERMINATORS),
             CURLOPT_HTTPHEADER => array(
                 "authorization: Bearer ".$data['access_token'],
                 "content-type: application/json"
