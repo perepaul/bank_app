@@ -47,9 +47,12 @@
             <tbody>
                 @foreach($transactions as $transaction)
                 <tr>
-                    {{-- @dd($transaction->user->first_name) --}}
+                    @php
+
+                    $user = $transaction->user()->get('*')->first();
+                    @endphp
                     <td>{{$transaction->reference}}</td>
-                    <td>{{ auth_user_full_name($transaction->user) ?? ''}}</td>
+                    <td>{{ auth_user_full_name($user) ?? ''}}</td>
                     <td>{{$transaction->reciepient_name}}</td>
                     <td>
                         <div class="btn btn-success btn-sm">sucess</div>
