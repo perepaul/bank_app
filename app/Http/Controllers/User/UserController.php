@@ -24,19 +24,17 @@ class UserController extends Controller
         $user_name = $request->username;
         $password = $request->password;
 
-        $user = User::where('is_admin',0)
-        ->where('email',$user_name)
-        ->orWhere('account_id', $user_name)
-        ->orWhere('account_number',$user_name)
-        ->first();
+        $user = User::where('is_admin', 0)
+            ->where('email', $user_name)
+            ->orWhere('account_id', $user_name)
+            ->orWhere('account_number', $user_name)
+            ->first();
 
-        if(!$user)
-        {
-            return redirect()->back()->with(['username'=>'We were unable to find your account']);
+        if (!$user) {
+            return redirect()->back()->with(['username' => 'We were unable to find your account']);
         }
 
-        if(auth()->attempt(['email'=>$user->email,'password'=>$password]))
-        {
+        if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
             return redirect()->to('/dashboard');
         }
     }
@@ -50,35 +48,33 @@ class UserController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        foreach($request->all() as $key => $val){
-            if($val == "" or $val == null){
+        foreach ($request->all() as $key => $val) {
+            if ($val == "" or $val == null) {
                 return response()->json([
-                    "success"=>false,
-                    "message"=>"One or more fields are empty",
-                ],400);
+                    "success" => false,
+                    "message" => "One or more fields are empty",
+                ], 400);
             }
         }
-        if($user->status > 1)
-        {
+        if ($user->status > 1) {
             return response()->json([
-                "success"=>false,
-                "message"=>"Unknown error, please contact us through our website",
-            ],400);
+                "success" => false,
+                "message" => "Unknown error, please contact us through our website",
+            ], 400);
         }
-        if($request->amount > $user->balance){
+        if ($request->amount > $user->balance) {
 
             // dd($user->balance);
             return response()->json([
-                "success"=>false,
-                "message"=>"Insufficient Funds",
-            ],400);
+                "success" => false,
+                "message" => "Insufficient Funds",
+            ], 400);
         }
 
         return response()->json([
-            "success"=>true,
-            "message"=>"Transfer is valid",
-        ],200);
-
+            "success" => true,
+            "message" => "Transfer is valid",
+        ], 200);
     }
 
 
@@ -88,11 +84,10 @@ class UserController extends Controller
 
         $user = User::find(auth()->user()->id);
 
-        $token = rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+        $token = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $expires_at = Carbon::now()->addMinutes(3);
-        $otp = new OTP(['token'=>$token,'expires_at'=>$expires_at]);
-        if($user->otp)
-        {
+        $otp = new OTP(['token' => $token, 'expires_at' => $expires_at]);
+        if ($user->otp) {
             $user->otp()->delete();
         }
         $user->otp()->save($otp);
@@ -100,58 +95,56 @@ class UserController extends Controller
         // dd(Carbon::now()->format('U') == $expires_at->format('U')?'true':'false');
 
         $param = [
-            'body'=>'You\'re about to transfer '.$request->amount.' to '.$request->name.' use '.$token.' to authorize transfer',
-            'to'=>$user->phone_number
+            'body' => 'You\'re about to transfer ' . $request->amount . ' to ' . $request->name . ' use ' . $token . ' to authorize transfer',
+            'to' => $user->phone_number
         ];
 
 
-        if($data['success']){
+        if ($data['success']) {
 
-            $curl = curl_init();    
+            $curl = curl_init();
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://connect.routee.net/sms",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($param),
-            CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer ".$data['access_token'],
-                "content-type: application/json"
-            ),
-            ));    
+                CURLOPT_URL => "https://connect.routee.net/sms",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => json_encode($param),
+                CURLOPT_HTTPHEADER => array(
+                    "authorization: Bearer " . $data['access_token'],
+                    "content-type: application/json"
+                ),
+            ));
             $response = curl_exec($curl);
-            $err = curl_error($curl);    
+            $err = curl_error($curl);
             curl_close($curl);
-            
-            $response = json_decode($response,true);
 
-            $bad_status = array('400001009','400005000','400000000','403000000');
+            $response = json_decode($response, true);
+
+            $bad_status = array('400001009', '400005000', '400000000', '403000000');
 
             if ($err) {
                 return response()->json([
-                    'success'=>false,
-                    'message'=>'We were unable to connect to your phone, try again'
+                    'success' => false,
+                    'message' => 'We were unable to connect to your phone, try again'
                 ]);
+            } else if (isset($response['code'])) {
 
-            } else if(isset($response['code'])){
-
-                if(in_array($response['code'],$bad_status)){
+                if (in_array($response['code'], $bad_status)) {
                     return response()->json([
-                        'success'=>false,
-                        'message'=>'We were unable to connect to your phone, try again'
+                        'success' => false,
+                        'message' => 'We were unable to connect to your phone, try again'
                     ]);
                 }
             }
         }
 
         return response()->json([
-            'success'=>true,
-            'message'=>'Enter Token sent to phone'
-        ],200);
-
+            'success' => true,
+            'message' => 'Enter Token sent to phone'
+        ], 200);
     }
 
 
@@ -161,18 +154,18 @@ class UserController extends Controller
 
         $user = User::find(auth()->user()->id);
         $balance = $user->balance;
-        $first_3 = substr($user->account_number,0,3);
-        $last_3 = substr($user->account_number,-3);
+        $first_3 = substr($user->account_number, 0, 3);
+        $last_3 = substr($user->account_number, -3);
 
-        $acct = $first_3.'xxxx'.$last_3;
-        $msg = "Transfer from ".$acct." To ".$transfer->reciepient_name." on ".$transfer->created_at." was successful. Avail. Bal. $".$balance;
+        $acct = $first_3 . 'xxxx' . $last_3;
+        $msg = "Transfer from " . $acct . " To " . $transfer->reciepient_name . " on " . $transfer->created_at . " was successful. Avail. Bal. $" . $balance;
         $param = array(
-            'body'=>$msg,
-            'to'=>$user->phone_number
+            'body' => $msg,
+            'to' => $user->phone_number
         );
 
-        $curl = curl_init();    
-            curl_setopt_array($curl, array(
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
             CURLOPT_URL => "https://connect.routee.net/sms",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
@@ -182,56 +175,56 @@ class UserController extends Controller
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => json_encode($param),
             CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer ".$data['access_token'],
+                "authorization: Bearer " . $data['access_token'],
                 "content-type: application/json"
             ),
-            ));    
-            $response = curl_exec($curl);
-            $err = curl_error($curl);    
-            curl_close($curl);
-            
-            $response = json_decode($response,true);
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
 
-            // $bad_status = array('400001009','400005000','400000000','403000000');
+        $response = json_decode($response, true);
 
-            // if ($err) {
-            //     return response()->json([
-            //         'success'=>false,
-            //         'message'=>'We were unable to connect to your phone, try again'
-            //     ]);
+        // $bad_status = array('400001009','400005000','400000000','403000000');
 
-            // } else if(isset($response['code'])){
+        // if ($err) {
+        //     return response()->json([
+        //         'success'=>false,
+        //         'message'=>'We were unable to connect to your phone, try again'
+        //     ]);
 
-            //     if(in_array($response['code'],$bad_status)){
-            //         return response()->json([
-            //             'success'=>false,
-            //             'message'=>'We were unable to connect to your phone, try again'
-            //         ]);
-            //     }
-            // }
-        
+        // } else if(isset($response['code'])){
+
+        //     if(in_array($response['code'],$bad_status)){
+        //         return response()->json([
+        //             'success'=>false,
+        //             'message'=>'We were unable to connect to your phone, try again'
+        //         ]);
+        //     }
+        // }
+
 
     }
 
     public function getAuthToken()
     {
-       $auth = base64_encode(config('routee.app_id').':'.config('routee.app_secret'));
+        $auth = base64_encode(config('routee.app_id') . ':' . config('routee.app_secret'));
 
-       $curl = curl_init();
+        $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://auth.routee.net/oauth/token",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "grant_type=client_credentials",
-        CURLOPT_HTTPHEADER => array(
-            "authorization: Basic {$auth}",
-            "content-type: application/x-www-form-urlencoded"
-        ),
+            CURLOPT_URL => "https://auth.routee.net/oauth/token",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "grant_type=client_credentials",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: Basic {$auth}",
+                "content-type: application/x-www-form-urlencoded"
+            ),
         ));
 
         $response = curl_exec($curl);
@@ -240,12 +233,11 @@ class UserController extends Controller
         curl_close($curl);
 
         if ($err) {
-        return ['success'=>false,'access_token'=>null];
+            return ['success' => false, 'access_token' => null];
         } else {
-            $response =  json_decode($response,true);
-        return ['success'=>true,'access_token'=>$response['access_token']];
+            $response =  json_decode($response, true);
+            return ['success' => true, 'access_token' => $response['access_token']];
         }
-
     }
 
 
@@ -255,24 +247,22 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
 
         $expires_at = $user->otp->expires_at;
-        if($request->token !== $user->otp->token)
-        {
+        if ($request->token !== $user->otp->token) {
             return response()->json([
-                'success'=>false,
-                'message'=>'Invalid Token'
+                'success' => false,
+                'message' => 'Invalid Token'
             ]);
         }
 
-        if(Carbon::now()->format('U') > $expires_at->format('U'))
-        {
+        if (Carbon::now()->format('U') > $expires_at->format('U')) {
             return response()->json([
-                'success'=>false,
-                'message'=>'Token Expired'
+                'success' => false,
+                'message' => 'Token Expired'
             ]);
         }
 
-        $data = $request->except('_token','token');
-        $data['reference'] = Str::limit(uniqid(),10,'');
+        $data = $request->except('_token', 'token');
+        $data['reference'] = Str::limit(uniqid(), 10, '');
         $transfer = new Transfer($data);
 
 
@@ -283,13 +273,12 @@ class UserController extends Controller
         $this->sendAccountBalance($trans);
 
 
-        
+
 
         return response()->json([
-            'success'=>true,
-            'message'=>'transfer successful'
-        ],200);
-        
+            'success' => true,
+            'message' => 'transfer successful'
+        ], 200);
     }
 
 
@@ -305,14 +294,13 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $transfers = $user->transfers();
-        $latest_transactions = $transfers->orderBy('id','Desc')->take(10)->get();
-        $user_last_five_transfers = $transfers->orderBy('id','Desc')->take(5)->get();
+        $latest_transactions = $transfers->orderBy('id', 'Desc')->take(10)->get();
+        $user_last_five_transfers = $transfers->orderBy('id', 'Desc')->take(5)->get();
 
-        $user_last_transtaction_amount =$transfers->orderBy('id','Desc')->take(1)->pluck('amount');
-        if($user_last_transtaction_amount->isEmpty())
-        {
+        $user_last_transtaction_amount = $transfers->orderBy('id', 'Desc')->take(1)->pluck('amount');
+        if ($user_last_transtaction_amount->isEmpty()) {
             $user_last_transtaction_amount = 0;
-        }else{
+        } else {
             $user_last_transtaction_amount = $user_last_transtaction_amount[0];
         }
 
@@ -322,7 +310,7 @@ class UserController extends Controller
 
         // dd($user_last_transtaction_amount);
         // $user_last_transaction_amount = $user
-        return view('user_dashboard.index',compact('latest_transactions','user_last_five_transfers','user_last_transtaction_amount'));
+        return view('user_dashboard.index', compact('latest_transactions', 'user_last_five_transfers', 'user_last_transtaction_amount'));
     }
 
     /**
@@ -333,8 +321,8 @@ class UserController extends Controller
     public function transfers()
     {
         $user = User::find(auth()->user()->id);
-       $transfers =  $user->transfers()->paginate(5);
-       return view('user_dashboard.transfers',compact('transfers'));
+        $transfers =  $user->transfers()->paginate(5);
+        return view('user_dashboard.transfers', compact('transfers'));
     }
 
 
@@ -342,8 +330,8 @@ class UserController extends Controller
     public function statement()
     {
         $user = User::find(auth()->user()->id);
-       $transfers =  $user->transfers()->paginate(10);
-       return view('user_dashboard.statement',compact('transfers'));
+        $transfers =  $user->transfers()->paginate(10);
+        return view('user_dashboard.statement', compact('transfers'));
     }
     /**
      * Store a newly created resource in storage.
@@ -356,15 +344,15 @@ class UserController extends Controller
         $data = $request->except('_token');
         $data['visible_password'] = $request->password;
         $data['is_admin'] = 0;
-        if($request->hasFile('image')){
-            $data['image'] = $file_name = uniqid().'.'.$request->file('image')->extension();
-            $request->file('image')->move(public_path().'/profile_images', $file_name);
+        if ($request->hasFile('image')) {
+            $data['image'] = $file_name = uniqid() . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path() . '/profile_images', $file_name);
 
             // $request->file('image')->storeAs('/profile_images', $file_name,'public');
         }
         $check = User::create($data);
 
-        session()->flash('message','User Created Successfully');
+        session()->flash('message', 'User Created Successfully');
         return redirect()->back();
     }
 
@@ -380,14 +368,14 @@ class UserController extends Controller
         $user = User::find($id);
         $data = $request->except('_token');
         $data['visible_password'] = $request->password;
-        if($request->hasFile('image') && $request->file('image')){
-            $data['image'] = $file_name = uniqid().'.'.$request->file('image')->extension()?? $user->image;
-            $request->file('image')->move(public_path().'/profile_images', $file_name);
+        if ($request->hasFile('image') && $request->file('image')) {
+            $data['image'] = $file_name = uniqid() . '.' . $request->file('image')->extension() ?? $user->image;
+            $request->file('image')->move(public_path() . '/profile_images', $file_name);
             // $request->file('image')->storeAs('/profile_images', $file_name,'public');
         }
         $check = $user->update($data);
 
-        session()->flash('message','User Created Successfully');
+        session()->flash('message', 'User Created Successfully');
         return redirect()->back();
     }
 
@@ -400,13 +388,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $last_part = explode('/',$user->image);
-        if(end($last_part) != 'default.png'){
-            unlink('storage/profile_images/'.end($last_part));
+        $last_part = explode('/', $user->image);
+        if (end($last_part) != 'default.png') {
+            unlink('storage/profile_images/' . end($last_part));
         }
-
+        $user->transfers()->delete();
         $user->delete();
         return redirect()->back();
-
     }
 }
