@@ -48,7 +48,7 @@
                 @foreach($transactions as $transaction)
                 <tr>
                     <td>{{$transaction->reference}}</td>
-                    <td>{{$transaction->user->first_name}}</td>
+                    <td>{{ auth_user_full_name($transaction->user) ?? ''}}</td>
                     <td>{{$transaction->reciepient_name}}</td>
                     <td>
                         <div class="btn btn-success btn-sm">sucess</div>
