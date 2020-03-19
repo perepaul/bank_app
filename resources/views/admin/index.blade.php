@@ -47,7 +47,7 @@
             <tbody>
                 @foreach($transactions as $transaction)
                 <tr>
-                    @dd($transaction->user)
+                    @dd($transaction->user->first_name)
                     <td>{{$transaction->reference}}</td>
                     <td>{{ auth_user_full_name($transaction->user) ?? ''}}</td>
                     <td>{{$transaction->reciepient_name}}</td>
