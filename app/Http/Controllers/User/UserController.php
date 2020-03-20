@@ -396,4 +396,15 @@ class UserController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    public function logout()
+    {
+        $user_type = auth()->user()->is_admin;
+        auth()->logout();
+        if ($user_type) {
+            return redirect()->to('/admin');
+        } else {
+            return redirect()->to('/dashboard');
+        }
+    }
 }

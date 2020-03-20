@@ -17,88 +17,48 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('logout',function(){
-        $user_type = auth()->user()->is_admin;
-        auth()->logout();
-        if($user_type){
-            return redirect()->to('/admin');
-        }else{
-            return redirect()->to('/dashboard');
-        }
-    })->name('logout');
-    Route::namespace('User')->group(function(){
-        Route::delete('deleteuser/{id}','UserController@destroy')->name('deleteuser');
-        Route::post('adduser','UserController@store')->name('adduser');
-        Route::delete('deleteuser/{id}','UserController@destroy')->name('deleteuser');
-        Route::post('updateuser/{id}','UserController@update')->name('updateuser');
+    Route::namespace('User')->group(function () {
+        Route::get('logout', 'UserController@logout')->name('logout');
+        Route::post('adduser', 'UserController@store')->name('adduser');
+        Route::delete('deleteuser/{id}', 'UserController@destroy')->name('deleteuser');
+        Route::post('updateuser/{id}', 'UserController@update')->name('updateuser');
         Route::get('login', 'UserController@showLogin')->name('user-login-form');
         Route::post('login', 'UserController@login')->name('user-login');
     });
 
-    Route::namespace('Admin')->group(function(){
-        
-        Route::get('admin/login','AdminController@showAdminLogin')->name('admin-login-form');
-        Route::post('admin/login','AdminController@login')->name('admin-login');
+    Route::namespace('Admin')->group(function () {
+
+        Route::get('admin/login', 'AdminController@showAdminLogin')->name('admin-login-form');
+        Route::post('admin/login', 'AdminController@login')->name('admin-login');
     });
 
-    
 
-    Route::get('/', function () {
-        return view('front.home');
-    })->name('home');
 
-    Route::get('about', function(){
-        return view('front.about');
-    })->name('about');
+    Route::get('/', 'PagesController@home')->name('home');
 
-    Route::get('contact', function(){
-        return view('front.contact_us');
+    Route::get('about', 'PagesController@about')->name('about');
 
-    })->name('contact');
+    Route::get('contact', 'PagesController@contact')->name('contact');
 
-    Route::post('contact',"ContactController@store")->name('contact-us');
+    Route::post('contact', "ContactController@store")->name('contact-us');
 });
 
 
 // User area routes
 
-Route::group(['middleware' => ['isUser'],'prefix'=>'dashboard'], function () {
+Route::group(['middleware' => ['isUser'], 'prefix' => 'dashboard'], function () {
 
-    Route::namespace('User')->group(function(){
+    Route::namespace('User')->group(function () {
 
         Route::get('/', 'UserController@index');
         Route::post('validate-otp', 'UserController@validateOtp');
-        Route::get('transfer','UserController@transfer')->name('transfer');
-        Route::get('send-otp','UserController@sendOtp')->name('send-otp');
+        Route::get('transfer', 'UserController@transfer')->name('transfer');
+        Route::get('send-otp', 'UserController@sendOtp')->name('send-otp');
         Route::post('validate-transfer', 'UserController@makeTransfer');
-        Route::get('transfers','UserController@transfers')->name('transfers');
+        Route::get('transfers', 'UserController@transfers')->name('transfers');
         Route::get('statement', 'UserController@statement')->name('statement');
-
     });
-
-
-
-
 });
-
-
-
-Route::get('statement', function(){
-    return view('front.account.statement');
-
-});
-
-Route::get('transactions', function(){
-    return view('front.account.transactions');
-
-});
-
-// Route::get('dashboard', function(){
-//     return view('front.user_dashboard.index');
-
-// });
-
-
 
 
 
@@ -106,10 +66,9 @@ Route::get('transactions', function(){
 
 // Admin routes
 
-Route::group(['prefix' => 'admin', "middleware"=>['isAdmin']], function () {
-    Route::namespace('Admin')->group(function() {
+Route::group(['prefix' => 'admin', "middleware" => ['isAdmin']], function () {
+    Route::namespace('Admin')->group(function () {
         Route::get('/', 'AdminController@index');
-        Route::get('users','AdminController@getUsers')->name('get-users');
+        Route::get('users', 'AdminController@getUsers')->name('get-users');
     });
-
 });
