@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('user_dashboard.components.user_head')
+
 <body>
     {{-- wrapper div  --}}
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"> 
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         {{-- navigation profile  --}}
         @include('user_dashboard.components.navigation')
         {{-- navigation profile end  --}}
@@ -31,7 +32,7 @@
 
                     </div>
                     <div class="main-card mb-3 card">
-                        <div class="card-header">Statement 
+                        <div class="card-header">Statement
                         </div>
                         <div class="table-responsive">
                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -39,7 +40,7 @@
                                     <tr>
                                         <th class="text-center">Transaction #</th>
                                         <th>Type</th>
-      
+
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Amount</th>
                                         <th class="text-center">Date</th>
@@ -52,7 +53,7 @@
                                         <td>
                                             Transfer
                                         </td>
-            
+
                                         <td class="text-center">
 
                                             <div class="badge badge-success">Success</div>
@@ -79,14 +80,14 @@
 
 
                 {{-- @include('user_dashboard.components.analytics') --}}
-            {{-- analytics body end  --}}
-            
+                {{-- analytics body end  --}}
+
 
                 {{-- footer body  --}}
-            <div class="app-wrapper-footer">
-                @include('user_dashboard.components.footer')
+                <div class="app-wrapper-footer">
+                    @include('user_dashboard.components.footer')
 
-            </div>
+                </div>
                 {{-- footer body end  --}}
             </div>
 
@@ -97,9 +98,13 @@
 
     </div>
     {{-- wrapper div end  --}}
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.5.0/dist/sweetalert2.all.js"></script>
     <script type="text/javascript" src="{{asset('assets/account/js/main.js')}}"></script>
+    <script type='text/javascript' data-cfasync='false'>
+        window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '5f252531-b845-429d-9097-fb5c667bb8c7', f: true }); done = true; } }; })();
+    </script>
 
 </body>
+
 </html>

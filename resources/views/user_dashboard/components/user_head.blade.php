@@ -20,4 +20,40 @@
     -->
     <link href="{{asset('assets/account/css/main.css')}}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@8.5.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        .progress {
+            float: right;
+            vertical-align: middle;
+            margin-left: 18px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            width: 12px;
+            background: transparent;
+            height: 12px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
