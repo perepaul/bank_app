@@ -37,7 +37,7 @@
                             <form class="needs-validation" novalidate action="" method="POST" id="transfer-form">
                                 @csrf
                                 <div class="form-row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <label for="validationCustom01">Accont</label>
                                         <input type="text" class="form-control" id="validationCustom01"
                                             placeholder="First name"
@@ -56,8 +56,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6 mb-3">
+                                        <label for="account_number">Account number</label>
+                                        <input type="text" class="form-control" id="account_number"
+                                            name="account_number" placeholder="Recipent's account number" required>
+                                        <div class="invalid-feedback">
+                                            Please provide recipient account number.
+                                        </div>
+                                    </div>
+
                                 </div>
+
                                 <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="bank_name">Bank name</label>
+                                        <input type="text" class="form-control" id="bank_name" name="bank_name"
+                                            placeholder="Recipient Bank" value="" required>
+                                        <div class="invalid-feedback">
+                                            recipient's bank is required
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6 mb-3">
                                         <label for="routing_number">Routing number</label>
                                         <input type="text" class="form-control" id="routing_number"
@@ -65,15 +84,6 @@
                                             required>
                                         <div class="invalid-feedback">
                                             Please enter a valid Routing number.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label for="account_number">Account number</label>
-                                        <input type="text" class="form-control" id="account_number"
-                                            name="account_number" placeholder="Recipent's account number" required>
-                                        <div class="invalid-feedback">
-                                            Please provide recipient account number.
                                         </div>
                                     </div>
 
@@ -221,7 +231,7 @@
                                                         })
                                                         .catch(error => {
                                                             Swal.showValidationMessage(
-                                                            `Request failed: ${error}`
+                                                            `Transfer failed: ${error}`
                                                             )
                                                         })
                                                     },
@@ -232,7 +242,9 @@
                                                             'Success!',
                                                             `${result.value.message}`,
                                                             'success'
-                                                            )
+                                                            ).then(()=>{
+                                                                location.href= "{{route('transfers')}}"
+                                                            })
                                                     }else{
                                                         Swal.fire(
                                                             'Failed!',
@@ -269,6 +281,7 @@
                                                     form.addEventListener('submit', function (event) {
                                                         event.preventDefault();
                                                         event.stopPropagation()
+                                                        var bank_name = form.bank_name;
                                                         var amount = form.amount;
                                                         var account_number = form.account_number;
                                                         var swift_code = form.swift_code;
@@ -295,6 +308,7 @@
 
 
                                                         data = validFormData = {
+                                                            "bank_name":bank_name.value,
                                                             "amount":amount.value,
                                                             "account_number":account_number.value,
                                                             "swift_code":swift_code.value,
