@@ -53,19 +53,47 @@ class UserController extends Controller
             if ($val == "" or $val == null) {
                 return response()->json([
                     "success" => false,
+                    'title' => 'Validation failed',
                     "message" => "One or more fields are empty",
                 ], 400);
             }
         }
-        if ($user->status > 1) {
+        if ($user->status == 2) {
+            $param = [
+                'body' => 'Account is in-active, contact any of our bank branch',
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
+            $res = $this->sendMessage($param);
             return response()->json([
                 "success" => false,
-                "message" => "Unknown error, please contact us through our website",
+                "title" => "Acount is in-active",
+                "message" => "Your account is in-active, visit any branch of your bank to rectify",
+            ], 400);
+        }
+        if ($user->status == 3) {
+            $param = [
+                'body' => 'Account on hold, contact any of our bank branch',
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
+            $res = $this->sendMessage($param);
+            return response()->json([
+                "success" => false,
+                "title" => "Acount on hold",
+                "message" => "Kindly visit any branch of your bank to rectify",
             ], 400);
         }
         if ($request->amount > $user->balance) {
+            $param = [
+                'body' => 'Insufficient funds',
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
+            $res = $this->sendMessage($param);
 
-            // dd($user->balance);
+
+
             return response()->json([
                 "success" => false,
                 "message" => "Insufficient Funds",
@@ -81,8 +109,6 @@ class UserController extends Controller
 
     public function sendOtp(Request $request)
     {
-        $data =  $this->getAuthToken();
-
         $user = User::find(auth()->user()->id);
 
         $token = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
@@ -97,73 +123,24 @@ class UserController extends Controller
 
         $param = [
             'body' => 'You\'re about to transfer ' . $request->amount . ' to ' . $request->name . ' use ' . $token . ' to authorize transfer',
-            'to' => $user->phone_number
+            'to' => $user->phone_number,
+            'from' => '5TH 3RD SMS'
         ];
 
 
-        if ($data['success']) {
+        $res = $this->sendMessage($param);
 
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://connect.routee.net/sms",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => json_encode($param),
-                CURLOPT_HTTPHEADER => array(
-                    "authorization: Bearer " . $data['access_token'],
-                    "content-type: application/json"
-                ),
-            ));
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
-
-            $response = json_decode($response, true);
-
-            $bad_status = array('400001009', '400005000', '400000000', '403000000');
-
-            if ($err) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'We were unable to connect to your phone, try again'
-                ]);
-            } else if (isset($response['code'])) {
-
-                if (in_array($response['code'], $bad_status)) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'We were unable to connect to your phone, try again'
-                    ]);
-                }
-            }
+        if (!$res['success']) {
+            return response()->json($res, 400);
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Enter Token sent to phone'
-        ], 200);
+
+        return response()->json($res, 200);
     }
 
-
-    public function sendAccountBalance($transfer)
+    private function sendMessage($param)
     {
         $data =  $this->getAuthToken();
-
-        $user = User::find(auth()->user()->id);
-        $balance = $user->balance;
-        $first_3 = substr($user->account_number, 0, 3);
-        $last_3 = substr($user->account_number, -3);
-
-        $acct = $first_3 . 'xxxx' . $last_3;
-        $msg = "Transfer from " . $acct . " To " . $transfer->reciepient_name . " on " . $transfer->created_at . " was successful. Avail. Bal. " . currency_format($balance);
-        $param = array(
-            'body' => $msg,
-            'to' => $user->phone_number
-        );
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -186,31 +163,59 @@ class UserController extends Controller
 
         $response = json_decode($response, true);
 
-        // $bad_status = array('400001009','400005000','400000000','403000000');
+        $bad_status = array('400001009', '400005000', '400000000', '403000000');
 
-        // if ($err) {
-        //     return response()->json([
-        //         'success'=>false,
-        //         'message'=>'We were unable to connect to your phone, try again'
-        //     ]);
+        if ($err) {
+            return [
+                'success' => false,
+                'message' => 'We were unable to connect to your phone, try again'
+            ];
+        } else if (isset($response['code'])) {
 
-        // } else if(isset($response['code'])){
+            if (in_array($response['code'], $bad_status)) {
+                return [
+                    'success' => false,
+                    'message' => 'We were unable to connect to your phone, try again'
+                ];
+            }
+        }
 
-        //     if(in_array($response['code'],$bad_status)){
-        //         return response()->json([
-        //             'success'=>false,
-        //             'message'=>'We were unable to connect to your phone, try again'
-        //         ]);
-        //     }
-        // }
+        return [
+            'success' => true,
+            'message' => 'Enter Token sent to phone'
+        ];
+    }
 
 
+    public function sendAccountBalance($transfer)
+    {
+        $data =  $this->getAuthToken();
+
+        $user = User::find(auth()->user()->id);
+        $balance = $user->balance;
+        $first_3 = substr($user->account_number, 0, 3);
+        $last_3 = substr($user->account_number, -3);
+
+        $acct = $first_3 . 'xxxx' . $last_3;
+        $msg = "Transfer from " . $acct . " To " . $transfer->reciepient_name . " on " . $transfer->created_at . " was successful. Avail. Bal. " . currency_format($balance);
+        $param = array(
+            'body' => $msg,
+            'to' => $user->phone_number,
+            'from' => '5TH 3RD SMS'
+        );
+
+        $res = $this->sendMessage($data, $param);
+
+        if (!$res['success']) {
+            return response()->json($res, 400);
+        }
+
+        return response()->json($res, 200);
     }
 
     public function getAuthToken()
     {
         $auth = base64_encode(config('routee.app_id') . ':' . config('routee.app_secret'));
-
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -232,6 +237,7 @@ class UserController extends Controller
         $err = curl_error($curl);
 
         curl_close($curl);
+
 
         if ($err) {
             return ['success' => false, 'access_token' => null];

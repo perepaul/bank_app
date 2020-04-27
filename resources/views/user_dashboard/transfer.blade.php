@@ -160,9 +160,9 @@
                                                     .then(res => {
                                                         if(!res.success){
                                                             Swal.fire(
-                                                            'Failed!',
+                                                            res.title,
                                                             res.message,
-                                                            'error'
+                                                            'info'
                                                             )
                                                             removeLoader();
                                                         }else{
