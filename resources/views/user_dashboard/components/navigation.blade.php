@@ -33,7 +33,7 @@
                 </span>
             </div>
             <div class="app-header__content">
-               
+
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -50,7 +50,7 @@
                                             class="dropdown-menu dropdown-menu-right">
 
                                                 <a href="{{route('logout')}}" class="dropdown-item">Log out</a>
-                                
+
                                         </div>
                                     </div>
                                 </div>
@@ -61,9 +61,11 @@
                                 </div>
                                 <div class="widget-content-right header-user-info ml-3">
                                     <button type="button"
-                                        class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        class="btn-shadow p-1 btn btn-primary btn-sm" onclick="changePassword()">
+                                        <i class="fa text-white fa-key pr-1 pl-1"></i> Change Password
                                     </button>
+
+
                                 </div>
                             </div>
                         </div>
