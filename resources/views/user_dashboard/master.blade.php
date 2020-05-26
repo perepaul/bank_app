@@ -17,7 +17,7 @@
             {{-- analytics body  --}}
             <div class="app-main__outer">
                 <div class="app-main__inner">
-                @yield('content')
+                    @yield('content')
                 </div>
                 {{-- @include('user_dashboard.components.analytics') --}}
                 {{-- analytics body end  --}}
@@ -55,33 +55,39 @@
                 '<input type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password">'+
                 '</div>',
             focusConfirm: false,
+            showLoaderOnConfirm: true,
             preConfirm: () => {
-                document.getElementById('password').value
-                var p_conf = document.getElementById('password_confirmation').value
-                return p_conf;
-
-                // return fetch(`//api.github.com/users/${login}`)
-                // .then(response => {
-                //     if (!response.ok) {
-                //     throw new Error(response.statusText)
-                //     }
-                //     return response.json()
-                // })
-                // .catch(error => {
-                //     Swal.showValidationMessage(
-                //     `Request failed: ${error}`
-                //     )
-                // })
+                return fetch('{{route("user-changePassword")}}', {
+                    method:'post',
+                    body:JSON.stringify({
+                        password:document.getElementById('password').value,
+                        password_confirmation:document.getElementById('password_confirmation').value
+                    }),
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{csrf_token()}}',
+                    }
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if (!response.success) {
+                    throw new Error(response.errors.password)
+                    }
+                    return response;
+                })
+                .catch(error => {Swal.showValidationMessage(` ${error}`)})
             },
             allowOutsideClick: () => !Swal.isLoading()
             }).then(result => {
-                console.log(result);
+            Swal.fire(
+                'Password Changed',
+                result.value.message,
+                'success'
+            )
             })
 
-            // console.log(formValues);
-            // if (formValues) {
-            // Swal.fire(JSON.stringify(formValues))
-            // }
+
+
         }
     </script>
     <script type='text/javascript' data-cfasync='false'>

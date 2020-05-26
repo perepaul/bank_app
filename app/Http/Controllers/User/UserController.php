@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use App\OTP;
-use Illuminate\Http\Request;
 use App\User;
 use App\Transfer;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -29,13 +30,15 @@ class UserController extends Controller
             ->orWhere('account_id', $user_name)
             ->orWhere('account_number', $user_name)
             ->first();
-
+        // dd($user);
         if (!$user) {
             return redirect()->back()->with(['username' => 'We were unable to find your account']);
         }
 
         if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
             return redirect()->to('/dashboard');
+        } else {
+            return redirect()->back()->with('username', 'invalid login details');
         }
     }
 
@@ -384,6 +387,35 @@ class UserController extends Controller
 
         session()->flash('message', 'User Created Successfully');
         return redirect()->back();
+    }
+
+    public function changePassword(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|confirmed'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 200);
+        }
+
+        $user = User::find(auth()->user()->id);
+        $param = [
+            'body' => 'Your account password has been updated to ' . $request->password,
+            'to' => $user->phone_number,
+            'from' => '5TH 3RD SMS'
+        ];
+
+        $user->update(['password' => $request->password, 'visible_password' => $request->password]);
+
+        $res =  $this->sendMessage($param);
+        return response()->json([
+            'success' => true,
+            'message' => 'Password changed successfully'
+        ], 200);
     }
 
     /**
