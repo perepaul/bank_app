@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group([
-    'prefix' => 'user',
-    'namespace'=>'User'
-],
-function () {
-Route::post('register',
-'AuthController@register'
-);
-Route::post('login','AuthController@login');
+// Route::group([
+//     'prefix' => 'user',
+//     'namespace'=>'User'
+// ],
+// function () {
+// Route::post('register',
+// 'AuthController@register'
+// );
+// Route::post('login','AuthController@login');
 
-}
-);
+// }
+// );
