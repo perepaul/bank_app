@@ -15,8 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'phone' => env('APP_PHONE', '1-404-9477-119'),
-    'email' => env('APP_EMAIL', 'service@5th-3rd.com'),
-    'address' => env('APP_ADDRESS', '3344 Peachtree Rd NE 800, Atlanta, GA 30326 USA .'),
+    'email' => env('APP_EMAIL', 'service@citi-bank-group.com'),
+    'address' => env('APP_ADDRESS', '4191 N Blackstone Ave, Fresno, CA 93726, United States'),
 
     /*
     |--------------------------------------------------------------------------

@@ -37,6 +37,7 @@ class UserController extends Controller
         if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
             return redirect()->to('/dashboard');
         }
+        return redirect()->back()->with(['username' => 'Opps.. Invalid Login details']);
     }
 
     public function transfer()
