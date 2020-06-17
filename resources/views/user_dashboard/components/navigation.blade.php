@@ -1,7 +1,7 @@
 <!-- navigation profile  -->
 <div class="app-header header-shadow bg-secondary header-text-light">
     <div class="app-header__logo" style="padding: 0 0.9rem;font-size:.9em;">
-        <div class="text-white">Citibank</div>
+        <div class="text-white">Webster </div>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"

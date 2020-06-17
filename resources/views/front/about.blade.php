@@ -69,7 +69,7 @@ $title = "About";
                 </div>
                 <div class="col-md-6">
                     <h3 class="title">Mortgages</h3>
-                    <p class="exeption">Citibank offers a wide range of mortgage lending solutions to help meet your
+                    <p class="exeption">Webster Bank offers a wide range of mortgage lending solutions to help meet your
                         specific need. Whether you're thinking about buying your first home or that vacation home you've
                         always wanted, we offer mortgage solutions for needs big and small—and everything in between</p>
                     {{-- <a class="button button-lg button-primary" href="single-service.html">Learn more</a> --}}

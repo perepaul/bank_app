@@ -63,7 +63,7 @@ class UserController extends Controller
             $param = [
                 'body' => 'Account is in-active, contact any of our bank branch',
                 'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'from' => 'WEBSTER SMS'
             ];
             $res = $this->sendMessage($param);
             return response()->json([
@@ -76,7 +76,7 @@ class UserController extends Controller
             $param = [
                 'body' => 'Account on hold, contact any of our bank branch',
                 'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'from' => 'WEBSTER SMS'
             ];
             $res = $this->sendMessage($param);
             return response()->json([
@@ -89,7 +89,7 @@ class UserController extends Controller
             $param = [
                 'body' => 'Insufficient funds',
                 'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'from' => 'WEBSTER SMS'
             ];
             $res = $this->sendMessage($param);
 
@@ -125,7 +125,7 @@ class UserController extends Controller
         $param = [
             'body' => 'You\'re about to transfer ' . $request->amount . ' to ' . $request->name . ' use ' . $token . ' to authorize transfer',
             'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'from' => 'WEBSTER SMS'
         ];
 
 
@@ -202,7 +202,7 @@ class UserController extends Controller
         $param = array(
             'body' => $msg,
             'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'from' => 'WEBSTER SMS'
         );
 
         $res = $this->sendMessage($data, $param);

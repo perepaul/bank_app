@@ -5,9 +5,9 @@
             <div class="col-md-10 col-xl-6">
                 <div class="text-block-3">
                     <h2 class="wow fadeIn">A Few Words About Us</h2>
-                    <h6 class="wow fadeIn">Citibank founded in 1812 to introduce the new level of financial services
+                    <h6 class="wow fadeIn">Webster Bank founded in 1812 to introduce the new level of financial services
                         worldwide.</h6>
-                    <p class="wow fadeIn">At Citibank, we are guided by a common purpose to help make financial and
+                    <p class="wow fadeIn">At Webster Bank, we are guided by a common purpose to help make financial and
                         banking activities better by connecting clients and communities to the resource they need to be
                         successful. We are driving growth – helping to create jobs, develop communities, foster economic
                         mobility; while managing risk and providing a return to our clients.</p>

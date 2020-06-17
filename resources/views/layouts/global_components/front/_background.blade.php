@@ -6,7 +6,8 @@
         <div class="brand mobile-brand"><a href="/"><img src="{{asset('assets/front/images/logo.jpg')}}" alt=""
                     width="210" height="35" /></a></div>
         <h1 class="title">Providing Reliable Banking Solutions</h1>
-        <h6 class="exeption">Citi Bank, your number 1 providers of secure online Banking services available worldwide.
+        <h6 class="exeption">Webster Bank, your number 1 providers of secure online Banking services available
+            worldwide.
         </h6><a class="button button-lg button-primary" href="{{route('about')}}">Learn More</a>
     </div>
 </section>
