@@ -4,7 +4,7 @@
 
 <body>
     {{-- wrapper div  --}}
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header" id="app-container">
         {{-- navigation profile  --}}
         @include('user_dashboard.components.navigation')
         {{-- navigation profile end  --}}
