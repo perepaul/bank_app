@@ -12,7 +12,7 @@
                                 <!-- Nav tabs-->
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-3-1"
-                                            data-toggle="tab">Carlifonia</a></li>
+                                            data-toggle="tab">Washington</a></li>
                                 </ul>
                                 <!-- Tab panes-->
                                 <div class="tab-content">
