@@ -24,7 +24,7 @@
               <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
                 <!-- Nav tabs-->
                 <ul class="nav nav-tabs">
-                  <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">Atlanta</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">Washington</a></li>
                   {{-- <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">New York</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">Chicago</a></li> --}}
                 </ul>
@@ -35,7 +35,7 @@
                       <li>
                         <div class="unit unit-horizontal unit-spacing-xxs">
                           <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                          <div class="unit-body"><a class="hover-text" href="#">3344 Peachtree Rd NE 800, <br class="veil reveal-lg-inline">Atlanta, GA 30326 USA</a></div>
+                        <div class="unit-body"><a class="hover-text" href="#">{{config('app.address')}}<br class="veil reveal-lg-inline"></a></div>
                         </div>
                       </li>
                       <li>
