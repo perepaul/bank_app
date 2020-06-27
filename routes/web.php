@@ -24,6 +24,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('updateuser/{id}', 'UserController@update')->name('updateuser');
         Route::get('login', 'UserController@showLogin')->name('user-login-form');
         Route::post('login', 'UserController@login')->name('user-login');
+        Route::post('password', 'UserController@changePassword')->name('user-changePassword');
     });
 
     Route::namespace('Admin')->group(function () {

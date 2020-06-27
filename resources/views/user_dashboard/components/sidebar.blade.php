@@ -1,5 +1,5 @@
- <!-- sidebar  -->
- <div class="app-sidebar sidebar-shadow bg-royal sidebar-text-light">
+<!-- sidebar  -->
+<div class="app-sidebar sidebar-shadow bg-royal sidebar-text-light" id="sidebar">
     <div class="app-header__logo">
         <div class="logo-src"></div>
         <div class="header__pane ml-auto">
@@ -24,8 +24,7 @@
     </div>
     <div class="app-header__menu">
         <span>
-            <button type="button"
-                class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                 <span class="btn-icon-wrapper">
                     <i class="fa fa-ellipsis-v fa-w-6"></i>
                 </span>
@@ -39,7 +38,7 @@
                 <li>
                     <a href="{{url('/dashboard')}}" class="mm-active">
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard 
+                        Dashboard
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Transactions</li>
@@ -69,6 +68,12 @@
                     <a href="{{route('statement')}}">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Account Statement
+                    </a>
+                </li>
+
+                <li class="d-md-none pl-0">
+                    <a href="javascript:void(0)" class="" onclick="changePassword()">
+                        <i class="metismenu-icon fa fa-key"></i> Change Password
                     </a>
                 </li>
             </ul>
