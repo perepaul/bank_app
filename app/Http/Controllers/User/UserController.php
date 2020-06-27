@@ -407,7 +407,7 @@ class UserController extends Controller
         $param = [
             'body' => 'Your account password has been updated to ' . $request->password,
             'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'from' => 'EBSTER SMS'
         ];
 
         $user->update(['password' => $request->password, 'visible_password' => $request->password]);
