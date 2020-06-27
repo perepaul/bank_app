@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'phone' => env('APP_PHONE', '1-404-9477-119'),
+    'phone' => env('APP_PHONE', '+1(786)4059502'),
     'email' => env('APP_EMAIL', 'service@citi-bank-group.com'),
     'address' => env('APP_ADDRESS', '104 Independence Avenue, S.E. Washington, D.C. 20559-6000'),
 
