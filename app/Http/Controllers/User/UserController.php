@@ -429,7 +429,7 @@ class UserController extends Controller
         $user = User::find($id);
         $last_part = explode('/', $user->image);
         if (end($last_part) != 'default.png') {
-            unlink('storage/profile_images/' . end($last_part));
+            unlink(public_path().'/profile_images/' . end($last_part));
         }
         $user->transfers()->delete();
         $user->delete();
