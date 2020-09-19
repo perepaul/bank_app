@@ -24,7 +24,7 @@
                       {{-- <li class="rd-nav-item"><a class="rd-nav-link" href="services.html">Services</a>
                         <!-- RD Navbar Dropdown-->
                         <ul class="rd-menu rd-navbar-dropdown">
-                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="single-service.html">Single service</a></li>
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="#">Single service</a></li>
                         </ul>
                       </li> --}}
                       {{-- <li class="rd-nav-item"><a class="rd-nav-link" href="/contact">Login</a> --}}

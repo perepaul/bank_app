@@ -36,8 +36,8 @@
               </div>
               <div class="col-md-6">
                 <h3 class="title">Checkings Account</h3>
-                <p class="exeption">The right checking account can help move you closer to your goals, no matter where you are in life. Whether you want to simply handle monthly bills and everyday purchases, or find new ways to earn perks and rewards, a Fifth Bank personal checking account is a convenient way to manage your money with confidence.</p>
-                {{-- <a class="button button-lg button-primary" href="single-service.html">Learn more</a> --}}
+                <p class="exeption">The right checking account can help move you closer to your goals, no matter where you are in life. Whether you want to simply handle monthly bills and everyday purchases, or find new ways to earn perks and rewards, a Nat West Bank personal checking account is a convenient way to manage your money with confidence.</p>
+                {{-- <a class="button button-lg button-primary" href="#">Learn more</a> --}}
               </div>
             </div>
             <div class="row row-20 service-item">
@@ -45,9 +45,9 @@
               </div>
               <div class="col-md-6">
                 <h3 class="title">Private Banking</h3>
-                <p class="exeption">Our dedicated team offers banking services with a personalised focus. The banking services they provide are supported by the Fifth Bank global network. 
+                <p class="exeption">Our dedicated team offers banking services with a personalised focus. The banking services they provide are supported by the Nat West Bank global network. 
                     Our Private Banking focuses on the unique banking and financial needs of high-earning individuals who prefer personalised banking services. Private Banking is about building long-term relationships and offering personal guidance. 
-                    We offer you a full range of banking, investment and fiduciary products and services. Private Banking leverages the resources and over 150 years of proven expertise of the Fifth Bank Group in asset management, research, 
+                    We offer you a full range of banking, investment and fiduciary products and services. Private Banking leverages the resources and over 150 years of proven expertise of the Nat  Bank Group in asset management, research, 
                     securities & foreign exchange trading, credit and corporate finance. 
                     We are therefore able to provide custom solutions for complex individual situations. </p>
               </div>
@@ -57,8 +57,8 @@
               </div>
               <div class="col-md-6">
                 <h3 class="title">Mortgages</h3>
-                <p class="exeption">Fifth Third Bank offers a wide range of mortgage lending solutions to help meet your specific need. Whether you're thinking about buying your first home or that vacation home you've always wanted, we offer mortgage solutions for needs big and small—and everything in between</p>
-                {{-- <a class="button button-lg button-primary" href="single-service.html">Learn more</a> --}}
+                <p class="exeption">Nat West Bank offers a wide range of mortgage lending solutions to help meet your specific need. Whether you're thinking about buying your first home or that vacation home you've always wanted, we offer mortgage solutions for needs big and small—and everything in between</p>
+                {{-- <a class="button button-lg button-primary" href="#">Learn more</a> --}}
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@
             <div class="box-cta-inner">
               <h3>Choose Your <span class="font-weight-bold">Bank Card</span> Now!</h3>
             </div>
-            <div class="box-cta-inner"><a class="button button-lg button-white" href="single-service.html">Order Card</a></div>
+            <div class="box-cta-inner"><a class="button button-lg button-white" href="#">Order Card</a></div>
           </div>
         </div>
       </section>

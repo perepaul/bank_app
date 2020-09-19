@@ -1,7 +1,7 @@
         <!-- navigation profile  -->
         <div class="app-header header-shadow bg-secondary header-text-light">
             <div class="app-header__logo">
-                <div class="text-lg text-white">Fifth Third</div>
+                <div class="text-lg text-white">Nat West</div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"

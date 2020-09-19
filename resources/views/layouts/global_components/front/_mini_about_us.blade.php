@@ -5,8 +5,8 @@
             <div class="col-md-10 col-xl-6">
               <div class="text-block-3">
                 <h2 class="wow fadeIn">A Few Words About Us</h2>
-                <h6 class="wow fadeIn">Fifth Third Bank was founded in 1999 to introduce the new level of financial services worldwide.</h6>
-                <p class="wow fadeIn">At Fifth Third Bank, we are guided by a common purpose to help make financial lives better by connecting clients and communities to the resource they need to be successful. We are driving growth – helping to create jobs, develop communities, foster economic mobility; while managing risk and providing a return to our clients.</p>
+                <h6 class="wow fadeIn">Nat West Bank was founded in 1999 to introduce the new level of financial services worldwide.</h6>
+                <p class="wow fadeIn">At Nat West Bank, we are guided by a common purpose to help make financial lives better by connecting clients and communities to the resource they need to be successful. We are driving growth – helping to create jobs, develop communities, foster economic mobility; while managing risk and providing a return to our clients.</p>
               </div>
               <div class="row row-xs-center row-30 text-center">
                 <div class="col-6 col-sm-4">
