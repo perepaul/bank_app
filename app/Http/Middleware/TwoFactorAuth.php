@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class DashboardAccess
+class TwoFactorAuth
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class DashboardAccess
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->check())
-        {
-            return redirect()->route('login');
-        }
-        return $next($request);
+        // $check = session()->get('2fa');
+        // if($check){
+        //     return $next($request);
+        // }
     }
 }

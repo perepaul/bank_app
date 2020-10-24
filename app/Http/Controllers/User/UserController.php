@@ -36,10 +36,42 @@ class UserController extends Controller
         }
 
         if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
-            return redirect()->to('/dashboard');
+            $user = auth()->user();
+            auth()->logout();
+            session()->put('2fa-user',$user);
+            return redirect()->route('2fa')->with('user',$user);
         } else {
             return redirect()->back()->with('username', 'invalid login details');
         }
+    }
+
+    public function twofactor(){
+     $this->middleware('guest');
+        $user = session()->get('2fa-user');
+        if(!$user){
+            return redirect()->route('login');
+        }
+
+        return view('auth.2fa',['user'=>$user]);
+     
+    }
+    public function twofactorauth(Request $request,$id)
+    {
+        if(auth()->check() && auth()->user()->is_admin == 0){
+            return redirect()->to('/dashboard',302);
+        }
+        $request->validate([
+            'mother_name'=>'required|string'
+        ]);
+        $user = User::findOrFail($id);
+
+        if(strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))){
+            auth()->login($user);
+            session()->forget('2fa-user');
+            return redirect()->to('/dashboard');
+        }
+        return redirect()->back()->withErrors(['mother_name'=>'Oop! incorrect name entered'])->withInput();
+
     }
 
     public function transfer()
@@ -439,6 +471,7 @@ class UserController extends Controller
     public function logout()
     {
         $user_type = auth()->user()->is_admin;
+        session()->forget('2fa-user');
         auth()->logout();
         if ($user_type) {
             return redirect()->to('/admin');

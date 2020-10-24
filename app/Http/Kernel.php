@@ -68,6 +68,8 @@ class Kernel extends HttpKernel
         'isAdmin'=>RedirectAdmin::class,
         'isUser'=>DashboardAccess::class,
         'CORS'=>\App\Http\Middleware\CORS::class,
+        '2fa'=>\App\Http\Middleware\TwoFactorAuth::class,
+            
     ];
 
     /**

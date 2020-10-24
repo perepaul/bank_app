@@ -48,7 +48,7 @@ class LoginController extends Controller
 
         }
 
-        return url('account');
+        return url('dashboard');
     }
 
 

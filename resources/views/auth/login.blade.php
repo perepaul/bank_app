@@ -19,7 +19,7 @@
                 <h3>Login</h3>
 
                 <!-- RD Mailform-->
-              <form class="rd-form form-lg " action="{{route('user-login')}}" method="POST">
+              <form class="rd-form form-lg " action="{{route('login')}}" method="POST">
                   @csrf
                   @if(session()->has('username'))
                   <div class="alert alert-danger text-danger alert-dismissible fade show" role="alert">
