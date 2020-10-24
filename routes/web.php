@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('guest')->group(function(){
+    Route::get('/twofactorchallenge','User\UserController@twofactor')->name('2fa');
+    Route::post('/twofactorauth/{id}','User\UserController@twofactorauth')->name('2fa.auth');
+});
 
 Route::group(['middleware' => 'web'], function () {
     Route::namespace('User')->group(function () {
@@ -22,8 +26,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('adduser', 'UserController@store')->name('adduser');
         Route::delete('deleteuser/{id}', 'UserController@destroy')->name('deleteuser');
         Route::post('updateuser/{id}', 'UserController@update')->name('updateuser');
-        Route::get('login', 'UserController@showLogin')->name('user-login-form');
-        Route::post('login', 'UserController@login')->name('user-login');
+        Route::get('login', 'UserController@showLogin')->name('login-form');
+        Route::post('login', 'UserController@login')->name('login');
         Route::post('password', 'UserController@changePassword')->name('user-changePassword');
     });
 

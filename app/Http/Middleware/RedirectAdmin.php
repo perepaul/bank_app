@@ -20,7 +20,7 @@ class RedirectAdmin
             return redirect()->route('admin-login-form');
         }
         if(!$request->user()->is_admin){
-            return redirect()->route('user-login');
+            return redirect()->route('login');
         }
         return $next($request);
     }

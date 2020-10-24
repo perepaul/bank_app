@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('layouts.global_components.front._head')
+    @yield('css')
     <body>
          <!--Preloader-->
         @include('layouts.global_components.front._preloader')
@@ -18,6 +19,7 @@
         <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
         @include('layouts.global_components.front._scripts')
+        @yield('js')
     </body>
 
 </html>

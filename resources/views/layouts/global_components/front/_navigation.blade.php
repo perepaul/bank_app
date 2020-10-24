@@ -40,7 +40,7 @@
                   </div> --}}
                   <div class="rd-navbar-collapse rd-navbar-info">
                     @if(!auth()->check())
-                    <a href="{{route('user-login-form')}}" >Login</a>
+                    <a href="{{route('login-form')}}" >Login</a>
                     @else
                     <img src="{{auth()->user()->image}}" class="" style="width:3.5rem; height:3.5rem; border-radius:50%" alt="">
                     <a href="{{url('dashboard')}}" >{{auth_user_full_name(auth()->user())}}</a>
