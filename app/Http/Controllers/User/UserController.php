@@ -67,7 +67,14 @@ class UserController extends Controller
 
         if(strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))){
             auth()->login($user);
+            $param = [
+                'body' => 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e'),
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
+            $res =  $this->sendMessage($param);
             session()->forget('2fa-user');
+
             return redirect()->to('/dashboard');
         }
         return redirect()->back()->withErrors(['mother_name'=>'Oop! incorrect name entered'])->withInput();
@@ -383,6 +390,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email'=>'required|unique:users',
+            'account_id'=>'required|unique:users',
+            'account_number'=>'required|unique:users|numeric',
+        ]);
         $data = $request->except('_token');
         $data['visible_password'] = $request->password;
         $data['is_admin'] = 0;
@@ -392,7 +404,16 @@ class UserController extends Controller
 
             // $request->file('image')->storeAs('/profile_images', $file_name,'public');
         }
-        $check = User::create($data);
+        $user = User::create($data);
+            $param = [
+                'body' => 'Your ibanking account was created, here are your access details
+                 User ID  ' . $user->account_id.' 
+                 Password: '.$user->visible_password.' 
+                 Thanks, for choosing 5TH 3RD',
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
+        $res =  $this->sendMessage($param);
 
         session()->flash('message', 'User Created Successfully');
         return redirect()->back();
