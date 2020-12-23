@@ -109,7 +109,7 @@ class UserController extends Controller
         }
         if ($user->status == 2) {
             $param = [
-                'body' => 'Account is in-active, contact any of our bank branch',
+                'body' => 'Account is in-active, contact any of our branch or contact us on our website.',
                 'to' => $user->phone_number,
                 'from' => '5TH 3RD SMS'
             ];
