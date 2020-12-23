@@ -6,6 +6,7 @@ use App\OTP;
 use App\User;
 use App\Transfer;
 use Carbon\Carbon;
+use App\Helpers\Sms;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public $sms;
+
+    public function __construct()
+    {
+        $this->sms = new Sms();
+    }
 
     public function showLogin()
     {
@@ -38,47 +45,47 @@ class UserController extends Controller
         if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
             $user = auth()->user();
             auth()->logout();
-            session()->put('2fa-user',$user);
-            return redirect()->route('2fa')->with('user',$user);
+            session()->put('2fa-user', $user);
+            return redirect()->route('2fa')->with('user', $user);
         } else {
             return redirect()->back()->with('username', 'invalid login details');
         }
     }
 
-    public function twofactor(){
-     $this->middleware('guest');
+    public function twofactor()
+    {
+        $this->middleware('guest');
         $user = session()->get('2fa-user');
-        if(!$user){
+        if (!$user) {
             return redirect()->route('login');
         }
 
-        return view('auth.2fa',['user'=>$user]);
-     
+        return view('auth.2fa', ['user' => $user]);
     }
-    public function twofactorauth(Request $request,$id)
+    public function twofactorauth(Request $request, $id)
     {
-        if(auth()->check() && auth()->user()->is_admin == 0){
-            return redirect()->to('/dashboard',302);
+        if (auth()->check() && auth()->user()->is_admin == 0) {
+            return redirect()->to('/dashboard', 302);
         }
         $request->validate([
-            'mother_name'=>'required|string'
+            'mother_name' => 'required|string'
         ]);
         $user = User::findOrFail($id);
 
-        if(strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))){
+        if (strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))) {
             auth()->login($user);
-            $param = [
-                'body' => 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e'),
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
-            ];
-            $res =  $this->sendMessage($param);
+            $body = 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e');
+            // $param = [
+            //     'to' => $user->phone_number,
+            //     'from' => '5TH 3RD SMS'
+            // ];
+
+            $res =  $this->sms->sendSms($user->phone_number, $body);
             session()->forget('2fa-user');
 
             return redirect()->to('/dashboard');
         }
-        return redirect()->back()->withErrors(['mother_name'=>'Oop! incorrect name entered'])->withInput();
-
+        return redirect()->back()->withErrors(['mother_name' => 'Oop! incorrect name entered'])->withInput();
     }
 
     public function transfer()
@@ -182,44 +189,23 @@ class UserController extends Controller
 
     private function sendMessage($param)
     {
-        $data =  $this->getAuthToken();
-
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://connect.routee.net/sms",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($param),
-            CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer " . $data['access_token'],
-                "content-type: application/json"
-            ),
-        ));
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-
-        $response = json_decode($response, true);
+        $to = $param['to'];
+        $body = $param['body'];
+        $response = $this->sms->sendSms($to, $body);
 
         $bad_status = array('400001009', '400005000', '400000000', '403000000');
 
-        if ($err) {
+        if (!$response) {
             return [
                 'success' => false,
                 'message' => 'We were unable to connect to your phone, try again'
             ];
-        } else if (isset($response['code'])) {
+        } else if ($response == 'failed') {
 
-            if (in_array($response['code'], $bad_status)) {
-                return [
-                    'success' => false,
-                    'message' => 'We were unable to connect to your phone, try again'
-                ];
-            }
+            return [
+                'success' => false,
+                'message' => 'We were unable to connect to your phone, try again'
+            ];
         }
 
         return [
@@ -231,7 +217,6 @@ class UserController extends Controller
 
     public function sendAccountBalance($transfer)
     {
-        $data =  $this->getAuthToken();
 
         $user = User::find(auth()->user()->id);
         $balance = $user->balance;
@@ -246,47 +231,13 @@ class UserController extends Controller
             'from' => '5TH 3RD SMS'
         );
 
-        $res = $this->sendMessage($data, $param);
+        $res = $this->sendMessage($param);
 
         if (!$res['success']) {
             return response()->json($res, 400);
         }
 
         return response()->json($res, 200);
-    }
-
-    public function getAuthToken()
-    {
-        $auth = base64_encode(config('routee.app_id') . ':' . config('routee.app_secret'));
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://auth.routee.net/oauth/token",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "grant_type=client_credentials",
-            CURLOPT_HTTPHEADER => array(
-                "authorization: Basic {$auth}",
-                "content-type: application/x-www-form-urlencoded"
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-
-        if ($err) {
-            return ['success' => false, 'access_token' => null];
-        } else {
-            $response =  json_decode($response, true);
-            return ['success' => true, 'access_token' => $response['access_token']];
-        }
     }
 
 
@@ -391,9 +342,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email'=>'required|unique:users',
-            'account_id'=>'required|unique:users',
-            'account_number'=>'required|unique:users|numeric',
+            'email' => 'required|unique:users',
+            'account_id' => 'required|unique:users',
+            'account_number' => 'required|unique:users|numeric',
         ]);
         $data = $request->except('_token');
         $data['visible_password'] = $request->password;
@@ -405,14 +356,14 @@ class UserController extends Controller
             // $request->file('image')->storeAs('/profile_images', $file_name,'public');
         }
         $user = User::create($data);
-            $param = [
-                'body' => 'Your ibanking account was created, here are your access details
-                 User ID  ' . $user->account_id.' 
-                 Password: '.$user->visible_password.' 
+        $param = [
+            'body' => 'Your ibanking account was created, here are your access details
+                 User ID  ' . $user->account_id . ' 
+                 Password: ' . $user->visible_password . ' 
                  Thanks, for choosing 5TH 3RD',
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
-            ];
+            'to' => $user->phone_number,
+            'from' => '5TH 3RD SMS'
+        ];
         $res =  $this->sendMessage($param);
 
         session()->flash('message', 'User Created Successfully');
@@ -482,7 +433,7 @@ class UserController extends Controller
         $user = User::find($id);
         $last_part = explode('/', $user->image);
         if (end($last_part) != 'default.png') {
-            unlink(public_path().'/profile_images/' . end($last_part));
+            unlink(public_path() . '/profile_images/' . end($last_part));
         }
         $user->transfers()->delete();
         $user->delete();

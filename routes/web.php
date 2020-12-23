@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Sms;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route::get('/test-sms/{number}',function($number){
+//     // dd('here');
+//     try{
+//         $sms = new Sms();
+//         return $sms->sendSms($number,'here is the message');
+//     }catch(\Throwable $e){
+//         die('Opps! an error occured1');
+//     }
+// });
 Route::middleware('guest')->group(function(){
     Route::get('/twofactorchallenge','User\UserController@twofactor')->name('2fa');
     Route::post('/twofactorauth/{id}','User\UserController@twofactorauth')->name('2fa.auth');
