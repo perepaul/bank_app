@@ -74,13 +74,13 @@ class UserController extends Controller
 
         if (strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))) {
             auth()->login($user);
-            $body = 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e');
-            // $param = [
-            //     'to' => $user->phone_number,
-            //     'from' => '5TH 3RD SMS'
-            // ];
+            $param = [
+                'body' => 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e'),
+                'to' => $user->phone_number,
+                'from' => '5TH 3RD SMS'
+            ];
 
-            $res =  $this->sms->sendSms($user->phone_number, $body);
+            $res = $this->sendMessage($param);
             session()->forget('2fa-user');
 
             return redirect()->to('/dashboard');
@@ -192,26 +192,27 @@ class UserController extends Controller
         $to = $param['to'];
         $body = $param['body'];
         $response = $this->sms->sendSms($to, $body);
+        // dd($response);
 
-        $bad_status = array('400001009', '400005000', '400000000', '403000000');
-
-        if (!$response) {
+        if (array_key_exists('error', $response)) {
             return [
                 'success' => false,
                 'message' => 'We were unable to connect to your phone, try again'
             ];
-        } else if ($response == 'failed') {
+        } else if (array_key_exists('data', $response)) {
+            if($response['data']['status'] != 'success'){
+                return [
+                    'success' => false,
+                    'message' => 'We were unable to connect to your phone, try again'
+                ];
+            }
 
             return [
-                'success' => false,
-                'message' => 'We were unable to connect to your phone, try again'
+                'success' => true,
+                'message' => 'Enter Token sent to phone'
             ];
         }
 
-        return [
-            'success' => true,
-            'message' => 'Enter Token sent to phone'
-        ];
     }
 
 

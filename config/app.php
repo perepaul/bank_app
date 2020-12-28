@@ -18,6 +18,8 @@ return [
     'email' => env('APP_EMAIL', 'service@5th-3rd.com'),
     'address' => env('APP_ADDRESS', '3344 Peachtree Rd NE 800, Atlanta, GA 30326 USA .'),
 
+    'sms_api_key' => env('SMS_API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
