@@ -9,12 +9,12 @@ Class Sms{
 
     public function __construct()
     {
-        $this->client = new Client(['base_uri'=>'https://www.bulksmsnigeria.com/api/v1/sms/create']);
+        // $this->client = new Client(['base_uri'=>'https://www.bulksmsnigeria.com/api/v1/sms/create']);
     }
 
     public function sendSms($to,$body)
     {
-        $from = config('twilio.phone');
+        // $from = config('twilio.phone');
         // $from = '5th 3rd Sms';
         // try{
         //     $res = $this->client->messages->create($to, [
