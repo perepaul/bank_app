@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         $password = 'secret';
         $users = [
             [
-                'account_id'            =>       $faker->unique()->bankAccountNumber,
+                'account_id'            =>       $faker->unique()->phoneNumber,
                 'first_name'            =>       $faker->unique()->firstName,
                 'last_name'             =>       $faker->unique()->lastName,
                 'middle_name'           =>       $faker->unique()->lastName,
@@ -28,14 +28,14 @@ class UsersTableSeeder extends Seeder
                 'password'              =>       $password,
                 'visible_password'      =>       $password,
                 'gender'                =>       1,
-                'account_number'        =>       $faker->unique()->bankAccountNumber,
+                'account_number'        =>       $faker->unique()->phoneNumber,
                 'status'                =>       1,
                 'is_admin'              =>       1,
                 'balance'               =>       1000000,
                 'address'               =>       $faker->streetAddress
             ],
             [
-                'account_id'            =>       $faker->unique()->bankAccountNumber,
+                'account_id'            =>       $faker->unique()->phoneNumber,
                 'first_name'            =>       $faker->unique()->firstName,
                 'last_name'             =>       $faker->unique()->lastName,
                 'middle_name'           =>       $faker->unique()->lastName,
@@ -46,14 +46,14 @@ class UsersTableSeeder extends Seeder
                 'password'              =>       $password,
                 'visible_password'      =>       $password,
                 'gender'                =>       1,
-                'account_number'        =>       $faker->unique()->bankAccountNumber,
+                'account_number'        =>       $faker->unique()->phoneNumber,
                 'status'                =>       2,
                 'is_admin'              =>       0,
                 'balance'               =>       1000000,
                 'address'               =>       $faker->streetAddress
             ],
             [
-                'account_id'            =>       $faker->unique()->bankAccountNumber,
+                'account_id'            =>       $faker->unique()->phoneNumber,
                 'first_name'            =>       $faker->unique()->firstName,
                 'last_name'             =>       $faker->unique()->lastName,
                 'middle_name'           =>       $faker->unique()->lastName,
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
                 'password'              =>       $password,
                 'visible_password'      =>       $password,
                 'gender'                =>       3,
-                'account_number'        =>       $faker->unique()->bankAccountNumber,
+                'account_number'        =>       $faker->unique()->phoneNumber,
                 'status'                =>       1,
                 'is_admin'              =>       0,
                 'balance'               =>       10000000,

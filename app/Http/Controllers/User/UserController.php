@@ -60,19 +60,39 @@ class UserController extends Controller
             return redirect()->route('login');
         }
 
+        $this->twoFactorOtp($user);
+
         return view('auth.2fa', ['user' => $user]);
     }
-    public function twofactorauth(Request $request, $id)
-    {
-        if (auth()->check() && auth()->user()->is_admin == 0) {
-            return redirect()->to('/dashboard', 302);
-        }
-        $request->validate([
-            'mother_name' => 'required|string'
-        ]);
-        $user = User::findOrFail($id);
 
-        if (strtolower($user->mother_name) == strtolower($request->mother_name) && $user->is(session()->get('2fa-user'))) {
+    private function twoFactorOtp($user)
+    {
+        $token = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $expires_at = Carbon::now()->addMinutes(3);
+        $otp = new OTP(['token' => $token, 'expires_at' => $expires_at]);
+        if ($user->otp) {
+            $user->otp()->delete();
+        }
+        $user->otp()->save($otp);
+        $res = $this->sendMessage([
+            'to'=>$user->phone_number,
+            'from'=>'5TH 3RD SMS',
+            'body'=>"Your otp is {$token}. Do not share this code with anybody."
+        ]);
+    }
+
+    private function validateTwoFactorOtp($user,$token)
+    {
+        $expires_at = $user->otp->expires_at;
+        if ($token !== $user->otp->token) {
+            return redirect()->back()->withErrors(['token'=>'Invalid Token. We have resent a new token']);
+        }
+
+        if (Carbon::now()->format('U') > $expires_at->format('U')) {
+            return redirect()->back()->withErrors(['token'=>'Token expired. We have resent a new token']);
+
+        }
+        if ($user->is(session()->get('2fa-user'))) {
             auth()->login($user);
             $param = [
                 'body' => 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e'),
@@ -85,7 +105,18 @@ class UserController extends Controller
 
             return redirect()->to('/dashboard');
         }
-        return redirect()->back()->withErrors(['mother_name' => 'Oop! incorrect name entered'])->withInput();
+        return redirect()->to('/login');
+    }
+    public function twofactorauth(Request $request, $id)
+    {
+        if (auth()->check() && auth()->user()->is_admin == 0) {
+            return redirect()->to('/dashboard', 302);
+        }
+        $request->validate([
+            'token' => 'required|string'
+        ]);
+        $user = User::findOrFail($id);
+        return $this->validateTwoFactorOtp($user,$request->token);
     }
 
     public function transfer()
@@ -359,8 +390,8 @@ class UserController extends Controller
         $user = User::create($data);
         $param = [
             'body' => 'Your ibanking account was created, here are your access details
-                 User ID  ' . $user->account_id . ' 
-                 Password: ' . $user->visible_password . ' 
+                 User ID  ' . $user->account_id . '
+                 Password: ' . $user->visible_password . '
                  Thanks, for choosing 5TH 3RD',
             'to' => $user->phone_number,
             'from' => '5TH 3RD SMS'
