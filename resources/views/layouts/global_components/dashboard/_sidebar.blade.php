@@ -32,9 +32,9 @@
     </li>
 
     <li class="nav-item ">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-phone"></i>
-            <span>Contacts</span>
+        <a class="nav-link" href="{{route('history')}}">
+            <i class="fas fa-fw fa-clock"></i>
+            <span>History</span>
         </a>
     </li>
 

@@ -82,4 +82,16 @@ class AdminController extends Controller
     {
         $contacts = ContactUs::all();
     }
+
+    public function history($id = null)
+    {
+        $users = user::where('is_admin',0)->get();
+        $transactions = Transfer::all();
+        if(!is_null($id)){
+            $user = User::find($id);
+            $transactions = $user->transfers;
+        }
+        $page_data = array('page' => 'Transaction History', 'btn_name' => '', 'btn_icon' => '');
+        return view('admin.history',compact('page_data','transactions','users'));
+    }
 }

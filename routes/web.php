@@ -73,5 +73,6 @@ Route::group(['prefix' => 'admin', "middleware" => ['isAdmin']], function () {
     Route::namespace('Admin')->group(function () {
         Route::get('/', 'AdminController@index');
         Route::get('users', 'AdminController@getUsers')->name('get-users');
+        Route::get('history/{id?}','AdminController@history')->name('history');
     });
 });
