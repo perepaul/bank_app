@@ -10,6 +10,8 @@ use App\Helpers\Sms;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\TokenMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -75,29 +77,30 @@ class UserController extends Controller
         }
         $user->otp()->save($otp);
         $res = $this->sendMessage([
-            'to'=>$user->phone_number,
-            'from'=>'5TH 3RD SMS',
-            'body'=>"Your otp is {$token}. Do not share this code with anybody."
+            'to' => $user,
+            'from' => '5TH 3RD SMS',
+            'body' => "Your otp is <strong>{$token}</strong>. Do not share this code with anybody.",
+            'subject' => 'Please verify your action'
         ]);
     }
 
-    private function validateTwoFactorOtp($user,$token)
+    private function validateTwoFactorOtp($user, $token)
     {
         $expires_at = $user->otp->expires_at;
         if ($token !== $user->otp->token) {
-            return redirect()->back()->withErrors(['token'=>'Invalid Token. We have resent a new token']);
+            return redirect()->back()->withErrors(['token' => 'Invalid Token. We have resent a new token']);
         }
 
         if (Carbon::now()->format('U') > $expires_at->format('U')) {
-            return redirect()->back()->withErrors(['token'=>'Token expired. We have resent a new token']);
-
+            return redirect()->back()->withErrors(['token' => 'Token expired. We have resent a new token']);
         }
         if ($user->is(session()->get('2fa-user'))) {
             auth()->login($user);
             $param = [
                 'body' => 'There was a successful log in on your account on ' . now()->format('d/m/Y H:s, e'),
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'to' => $user,
+                'from' => '5TH 3RD SMS',
+                'subject' => 'Login Alert on your account.'
             ];
 
             $res = $this->sendMessage($param);
@@ -116,7 +119,7 @@ class UserController extends Controller
             'token' => 'required|string'
         ]);
         $user = User::findOrFail($id);
-        return $this->validateTwoFactorOtp($user,$request->token);
+        return $this->validateTwoFactorOtp($user, $request->token);
     }
 
     public function transfer()
@@ -140,35 +143,38 @@ class UserController extends Controller
         }
         if ($user->status == 2) {
             $param = [
-                'body' => 'Account is in-active, contact any of our branch or contact us on our website.',
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'body' => 'Account is in-active, contact us on our website or send us an email to rectify.',
+                'to' => $user,
+                'from' => '5TH 3RD SMS',
+                'subject' => 'Your account is in-active'
             ];
             $res = $this->sendMessage($param);
             return response()->json([
                 "success" => false,
                 "title" => "Acount is in-active",
-                "message" => "Your account is in-active, visit any branch of your bank to rectify",
+                "message" => "Your account is in-active, contact us on our website or send us an email to rectify",
             ], 400);
         }
         if ($user->status == 3) {
             $param = [
-                'body' => 'Account on hold, contact any of our bank branch',
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'body' => 'Account on hold, contact us on our website or send us an email to rectify',
+                'to' => $user,
+                'from' => '5TH 3RD SMS',
+                'subject' => 'Your account is on hold'
             ];
             $res = $this->sendMessage($param);
             return response()->json([
                 "success" => false,
                 "title" => "Acount on hold",
-                "message" => "Kindly visit any branch of your bank to rectify",
+                "message" => "Kindly Contact us to rectify issues on your account",
             ], 400);
         }
         if ($request->amount > $user->balance) {
             $param = [
-                'body' => 'Insufficient funds',
-                'to' => $user->phone_number,
-                'from' => '5TH 3RD SMS'
+                'body' => 'You don\'t have enough funds to complete the transaction.',
+                'to' => $user,
+                'from' => '5TH 3RD SMS',
+                'subject' => 'Insufficient Funds'
             ];
             $res = $this->sendMessage($param);
 
@@ -202,9 +208,10 @@ class UserController extends Controller
         // dd(Carbon::now()->format('U') == $expires_at->format('U')?'true':'false');
 
         $param = [
-            'body' => 'You\'re about to transfer ' . $request->amount . ' to ' . $request->name . ' use ' . $token . ' to authorize transfer',
-            'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'body' => 'You\'re about to transfer ' . $request->amount . ' to ' . $request->name . ' use <strong>' . $token . '</strong> to authorize transfer',
+            'to' => $user,
+            'from' => '5TH 3RD SMS',
+            'subject' => 'Transfer Confirmation.'
         ];
 
 
@@ -222,7 +229,10 @@ class UserController extends Controller
     {
         $to = $param['to'];
         $body = $param['body'];
-        $response = $this->sms->sendSms($to, $body);
+        $subject = $param['subject'];
+        $sms = str_replace('<strong>','',$body);
+        $sms = str_replace('</strong>','',$sms);
+        $response = $this->sms->sendSms($to->phone_number, $sms);
 
 
         if (!$response) {
@@ -232,12 +242,12 @@ class UserController extends Controller
             ];
         }
 
-            return [
-                'success' => true,
-                'message' => 'Enter Token sent to phone'
-            ];
+        Mail::to($to->email)->send(new TokenMailable($body,$subject,$to));
 
-
+        return [
+            'success' => true,
+            'message' => 'Enter Token sent to phone or email'
+        ];
     }
 
 
@@ -253,8 +263,9 @@ class UserController extends Controller
         $msg = "Transfer from " . $acct . " To " . $transfer->reciepient_name . " on " . $transfer->created_at . " was successful. Avail. Bal. " . currency_format($balance);
         $param = array(
             'body' => $msg,
-            'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'to' => $user,
+            'from' => '5TH 3RD SMS',
+            'subject' => 'Transfer Successful'
         );
 
         $res = $this->sendMessage($param);
@@ -387,8 +398,10 @@ class UserController extends Controller
                  User ID  ' . $user->account_id . '
                  Password: ' . $user->visible_password . '
                  Thanks, for choosing 5TH 3RD',
-            'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'to' => $user,
+            'from' => '5TH 3RD SMS',
+            'subject' => 'Account Created Successful'
+
         ];
         $res =  $this->sendMessage($param);
 
@@ -435,8 +448,9 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
         $param = [
             'body' => 'Your account password has been updated to ' . $request->password,
-            'to' => $user->phone_number,
-            'from' => '5TH 3RD SMS'
+            'to' => $user,
+            'from' => '5TH 3RD SMS',
+            'Password Reset Successful'
         ];
 
         $user->update(['password' => $request->password, 'visible_password' => $request->password]);

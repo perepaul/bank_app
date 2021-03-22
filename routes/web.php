@@ -1,6 +1,8 @@
 <?php
 
-
+use App\User;
+use App\Mail\TokenMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::middleware('guest')->group(function(){
     Route::get('/twofactorchallenge','User\UserController@twofactor')->name('2fa');
