@@ -3,7 +3,8 @@
 namespace App\Helpers;
 
 
-Class Sms{
+class Sms
+{
 
     public $client;
 
@@ -12,7 +13,7 @@ Class Sms{
         // $this->client = new Client(['base_uri'=>'https://www.bulksmsnigeria.com/api/v1/sms/create']);
     }
 
-    public function sendSms($to,$body)
+    public function sendSms($to, $body)
     {
         // $from = config('twilio.phone');
         // $from = '5th 3rd Sms';
@@ -38,19 +39,46 @@ Class Sms{
             'from' => '5th 3rd SMS',
             'to' => $to,
             'body' => $body,
-            'api_token' => config('app.sms_api_key')
         );
 
-        $cURLConnection = curl_init('https://www.bulksmsnigeria.com/api/v1/sms/create');
-        curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $postRequest);
-        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        // $cURLConnection = curl_init('https://www.bulksmsnigeria.com/api/v1/sms/create');
+        // curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $postRequest);
+        // curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
-        $apiResponse = curl_exec($cURLConnection);
-        curl_close($cURLConnection);
+        // $apiResponse = curl_exec($cURLConnection);
+        // curl_close($cURLConnection);
 
-        // $apiResponse - available data from the API request
-        $jsonArrayResponse = json_decode($apiResponse,true);
-        return $jsonArrayResponse;
+        // // $apiResponse - available data from the API request
+        // $jsonArrayResponse = json_decode($apiResponse, true);
+        // return $jsonArrayResponse;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://connect.routee.net/sms",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($postRequest),
+            CURLOPT_HTTPHEADER => array(
+                "authorization: Bearer a789c982-da03-415e-b785-cf00a66eba7d",
+                "content-type: application/json"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            \Illuminate\Support\Facades\Log::info("cURL Error #:" . $err);
+        }
+        return $info['http_code'] == 200;
 
     }
 }

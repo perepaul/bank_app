@@ -223,26 +223,20 @@ class UserController extends Controller
         $to = $param['to'];
         $body = $param['body'];
         $response = $this->sms->sendSms($to, $body);
-        // dd($response);
 
-        if (array_key_exists('error', $response)) {
+
+        if (!$response) {
             return [
                 'success' => false,
                 'message' => 'We were unable to connect to your phone, try again'
             ];
-        } else if (array_key_exists('data', $response)) {
-            if($response['data']['status'] != 'success'){
-                return [
-                    'success' => false,
-                    'message' => 'We were unable to connect to your phone, try again'
-                ];
-            }
+        }
 
             return [
                 'success' => true,
                 'message' => 'Enter Token sent to phone'
             ];
-        }
+
 
     }
 
