@@ -16,6 +16,7 @@
                 <th>reference</th>
                 <th>From</th>
                 <th>To</th>
+                <th>Account number</th>
                 <th>Amount</th>
                 <th>Date</th>
             </tr>
@@ -26,6 +27,7 @@
                     <td>{{ $transaction->reference }}</td>
                     <td>{{ $transaction->user->first_name . ' ' . $transaction->user->last_name }}</td>
                     <td>{{ $transaction->reciepient_name }}</td>
+                    <td>{{$transaction->account_number}}</td>
                     <td>{{ $transaction->amount }}</td>
                     <td>{{ $transaction->created_at->format('D M, Y') }}</td>
                 </tr>
