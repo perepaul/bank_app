@@ -232,21 +232,21 @@ class UserController extends Controller
         $subject = $param['subject'];
         $sms = str_replace('<strong>','',$body);
         $sms = str_replace('</strong>','',$sms);
-        $response = $this->sms->sendSms($to->phone_number, $sms);
+        // $response = $this->sms->sendSms($to->phone_number, $sms);
 
 
-        if (!$response) {
-            return [
-                'success' => false,
-                'message' => 'We were unable to connect to your phone, try again'
-            ];
-        }
+        // if (!$response) {
+        //     return [
+        //         'success' => false,
+        //         'message' => 'We were unable to connect to your phone, try again'
+        //     ];
+        // }
 
         Mail::to($to->email)->send(new TokenMailable($body,$subject,$to));
 
         return [
             'success' => true,
-            'message' => 'Enter Token sent to phone or email'
+            'message' => 'Enter Token sent to your email'
         ];
     }
 
