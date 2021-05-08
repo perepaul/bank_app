@@ -45,10 +45,11 @@ class UserController extends Controller
         }
 
         if (auth()->attempt(['email' => $user->email, 'password' => $password])) {
-            $user = auth()->user();
-            auth()->logout();
-            session()->put('2fa-user', $user);
-            return redirect()->route('2fa')->with('user', $user);
+            // $user = auth()->user();
+            // auth()->logout();
+            // session()->put('2fa-user', $user);
+            // return redirect()->route('2fa')->with('user', $user);
+            return redirect()->to('/dashboard');
         } else {
             return redirect()->back()->with('username', 'invalid login details');
         }
